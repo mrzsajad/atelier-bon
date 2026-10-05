@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>آتلیه بُن | معماری معاصر</title>
+  <meta name="description" content="آتلیه بُن، استودیوی معماری معاصر در تهران. مودبورد زندهٔ پروژه‌های مسکونی، فرهنگی و داخلی.">
+  <meta name="theme-color" content="#0e0d0b">
+  <meta name="color-scheme" content="dark">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif&family=Vazirmatn:wght@400;500;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css">
+  <script>
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      document.documentElement.classList.add("reduce-motion");
+    }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#projects">رفتن به پروژه‌ها</a>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <div class="loader" id="loader">
+    <p class="sr-only">در حال بارگذاری آتلیه بُن</p>
+    <div class="loader-inner">
+      <p class="loader-mark">BON</p>
+      <div class="loader-line" aria-hidden="true"><span></span></div>
+      <p class="loader-pct" id="load-pct" aria-hidden="true">00</p>
+    </div>
+  </div>
+
+  <header class="header">
+    <a class="logo" href="#top" aria-label="آتلیه بُن، بازگشت به آغاز">
+      <svg viewBox="0 0 32 32" width="22" height="22" aria-hidden="true">
+        <path d="M6 6h12M6 6v20h20" fill="none" stroke="currentColor" stroke-width="1.4"/>
+      </svg>
+      <span>BON</span>
+    </a>
+    <nav class="nav-desktop" aria-label="اصلی">
+      <a href="#projects">پروژه‌ها</a>
+      <a href="#studio">استودیو</a>
+      <a href="#materials">ماده</a>
+      <a href="#contact">تماس</a>
+    </nav>
+    <div class="header-tools">
+      <p class="clock"><span>تهران</span> <time id="clock">—</time></p>
+      <a class="header-cta" href="#contact">شروع همکاری</a>
+      <button class="nav-toggle icon-btn" type="button" aria-label="منو" aria-expanded="false" aria-controls="nav-overlay">
+        <svg class="icon-menu" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M4 8h16M4 16h16"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="nav-overlay" id="nav-overlay" aria-hidden="true">
+    <div class="nav-overlay-bar">
+      <span class="logo" aria-hidden="true"><span>BON</span></span>
+      <button class="icon-btn" type="button" id="nav-close" aria-label="بستن منو">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M6 6l12 12M18 6L6 18"/>
+        </svg>
+      </button>
+    </div>
+    <nav aria-label="منو">
+      <a href="#projects">پروژه‌ها</a>
+      <a href="#studio">استودیو</a>
+      <a href="#materials">ماده</a>
+      <a href="#contact">تماس</a>
+    </nav>
+    <p class="nav-overlay-mail"><a href="mailto:studio@bonatelier.ir">studio@bonatelier.ir</a></p>
+  </div>
+
+  <main id="main">
+    <section class="stage" id="top" aria-label="مودبورد زنده">
+      <div class="hero-board" id="hero-board"></div>
+      <canvas class="wash" id="wash" aria-hidden="true"></canvas>
+      <div class="datum" id="datum" aria-hidden="true"><span class="datum-notch" id="datum-notch"></span></div>
+      <div class="stage-caption">
+        <p class="kicker">مودبورد زنده</p>
+        <h1>آتلیه بُن</h1>
+        <p>قاب‌ها خودشان حرکت می‌کنند. روی عکس بایست تا عمق بگیرد و رنگ پخش شود.</p>
+      </div>
+      <div class="instrument">
+        <p class="instrument-readout">
+          <span id="inst-no">—</span>
+          <strong id="inst-title">روی یک قاب بایستید</strong>
+        </p>
+        <button class="pause-btn" type="button" id="pause" aria-pressed="false">توقف حرکت</button>
+      </div>
+    </section>
+
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <div class="ticker-group">
+          <span>مسکونی</span><i></i><span>فرهنگی</span><i></i><span>داخلی</span><i></i><span>اداری</span><i></i><span>مرمت شهری</span><i></i><span>فضای عمومی</span><i></i>
+          <span>مسکونی</span><i></i><span>فرهنگی</span><i></i><span>داخلی</span><i></i><span>اداری</span><i></i><span>مرمت شهری</span><i></i><span>فضای عمومی</span><i></i>
+        </div>
+        <div class="ticker-group">
+          <span>مسکونی</span><i></i><span>فرهنگی</span><i></i><span>داخلی</span><i></i><span>اداری</span><i></i><span>مرمت شهری</span><i></i><span>فضای عمومی</span><i></i>
+          <span>مسکونی</span><i></i><span>فرهنگی</span><i></i><span>داخلی</span><i></i><span>اداری</span><i></i><span>مرمت شهری</span><i></i><span>فضای عمومی</span><i></i>
+        </div>
+      </div>
+    </div>
+
+    <section class="flip">
+      <p class="kicker">روش کار</p>
+      <h2>از یک خط،<br>تا یک بنا.</h2>
+      <p>قاب‌های پایین همان تختهٔ طراحی دفترند؛ خودشان ورق می‌خورند. روی هر عکس بایستید تا نامش خوانده شود.</p>
+    </section>
+
+    <section class="index" id="projects">
+      <div class="index-list">
+        <p class="kicker">02 — پروژه‌های منتخب</p>
+        <h2>نه قاب، نه یک سبک.</h2>
+        <p class="lede">روی نام بایستید تا تصویر عوض شود. برای پروندهٔ کامل، همان سطر یا قاب بالای صفحه را باز کنید.</p>
+        <div class="filters" id="filters" role="group" aria-label="فیلتر پروژه‌ها"></div>
+        <p class="count" id="project-count"></p>
+        <ul id="project-list"></ul>
+        <p class="empty" id="empty" hidden>پروژه‌ای در این دسته نیست.</p>
+      </div>
+      <button class="index-visual" id="index-open" type="button">
+        <img id="index-img" alt="">
+        <span class="index-caption">
+          <span id="index-kicker"></span>
+          <strong id="index-caption-title"></strong>
+        </span>
+      </button>
+    </section>
+
+    <section class="studio theme-paper" id="studio">
+      <div class="studio-inner">
+        <p class="kicker reveal">03 — استودیو</p>
+        <h2 class="quote reveal">ساختمان را از سکوتِ ماده بالا می‌آوریم؛ جایی که نور، خودش پلان است.</h2>
+        <div class="studio-split">
+          <p class="reveal">آتلیه بُن در تهران کار می‌کند؛ روی خانه‌هایی که حیاط دارند، فضاهای فرهنگیِ کم‌ادعا، و داخلی‌هایی که نور روز را هدر نمی‌دهند. رسم ما این است که ماده را زودتر از فرم انتخاب کنیم: سنگ، آجر، چوب، و ضخامت دیوار. آنچه می‌ماند باید آرام باشد و در اقلیم خودش قابل زندگی.</p>
+          <p class="reveal">دفتر یک اتاقِ بلند است با یک میز نمونه. تراورتن، آجر قزاقی، خاک کاشان و برادهٔ مس، پیش از هر نقشه‌ای روی این میز کنار هم می‌نشینند.</p>
+        </div>
+        <dl class="stats reveal">
+          <div><dt>سال کار</dt><dd>08</dd></div>
+          <div><dt>پروژه</dt><dd>34</dd></div>
+          <div><dt>شهر</dt><dd>06</dd></div>
+          <div><dt>جایزه</dt><dd>12</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="materials" id="materials">
+      <div class="materials-head">
+        <p class="kicker">04 — پالت ماده</p>
+        <h2>قبل از پلان، جنس را کنار هم می‌چینیم.</h2>
+        <p>این نوار یک مودبورد کارگاهی است. بکشیدش، یا بگذارید خودش بلغزد.</p>
+      </div>
+      <div id="material-board"></div>
+    </section>
+
+    <section class="principles theme-paper" id="approach">
+      <div class="principles-inner">
+        <p class="kicker">05 — رویکرد</p>
+        <h2>سه قراری که از آن کوتاه نمی‌آییم.</h2>
+        <ol>
+          <li class="reveal">
+            <span>01</span>
+            <h3>ماده اول است</h3>
+            <p>پیش از آنکه خط پلان را ببندیم، نمونهٔ سنگ و آجر را کنار هم می‌گذاریم. بافت، تصمیمِ فرم است.</p>
+          </li>
+          <li class="reveal">
+            <span>02</span>
+            <h3>نور، پلان است</h3>
+            <p>هر پنجره یک مبلمان نوری است. اندازهٔ روزنه را با ساعت روز و فصل تنظیم می‌کنیم، نه با نما.</p>
+          </li>
+          <li class="reveal">
+            <span>03</span>
+            <h3>زمینه را ادامه می‌دهیم</h3>
+            <p>بنا نباید در کوچه غریبه باشد. ارتفاع، رنگ خاک، و سایهٔ همسایه را وارد پروژه می‌کنیم.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="contact-copy">
+        <p class="kicker">06 — تماس</p>
+        <h2>اگر پروژه‌ای دارید که باید آرام، دقیق و ماندگار باشد، بنویسید.</h2>
+        <p>معمولاً ظرف دو روز پاسخ می‌دهیم. جلسهٔ اول برای شنیدن است، نه ارائهٔ طرح آماده.</p>
+        <ul class="contact-meta">
+          <li><a href="mailto:studio@bonatelier.ir">studio@bonatelier.ir</a></li>
+          <li>خیابان کریمخان زند، تهران</li>
+          <li>شنبه تا چهارشنبه، ۱۰ تا ۱۸</li>
+        </ul>
+      </div>
+      <form id="contact-form" novalidate>
+        <div class="form-grid">
+          <div class="field">
+            <label for="name">نام</label>
+            <input id="name" name="name" type="text" autocomplete="name" required>
+            <p class="field-error" id="name-error"></p>
+          </div>
+          <div class="field">
+            <label for="email">ایمیل</label>
+            <input id="email" name="email" type="email" autocomplete="email" inputmode="email" required>
+            <p class="field-error" id="email-error"></p>
+          </div>
+          <div class="field span-2">
+            <label for="kind">نوع پروژه</label>
+            <select id="kind" name="kind">
+              <option>هنوز مشخص نیست</option>
+              <option>خانه</option>
+              <option>فضای فرهنگی</option>
+              <option>داخلی</option>
+              <option>اداری / تجاری</option>
+            </select>
+          </div>
+          <div class="field span-2">
+            <label for="message">دربارهٔ پروژه</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+            <p class="field-error" id="message-error"></p>
+          </div>
+        </div>
+        <p class="form-summary" id="form-summary" role="status" aria-live="polite"></p>
+        <button class="submit" type="submit">فرستادن پیام</button>
+      </form>
+      <div class="form-success" id="form-success" hidden>
+        <p>پیام شما این‌جا ثبت شد. این نسخه هنوز به سرور وصل نیست؛ برای نامهٔ واقعی از ایمیل استودیو استفاده کنید.</p>
+        <button class="submit submit-ghost" type="button" id="form-reset">نوشتن پیام دیگر</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer-mark">BON</p>
+    <p>آتلیه بُن · معماری معاصر</p>
+    <p><a href="mailto:studio@bonatelier.ir">studio@bonatelier.ir</a></p>
+    <p class="footer-note">تصاویر این نسخه نمونه‌اند و باید با عکس پروژه‌های استودیو جایگزین شوند. <span id="year"></span></p>
+  </footer>
+
+  <div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="viewer-title">
+    <div class="viewer-body">
+      <button class="icon-btn viewer-close" type="button" aria-label="بستن">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <p class="kicker" data-field="no"></p>
+      <h2 id="viewer-title" data-field="title"></h2>
+      <p class="viewer-lead" data-field="text"></p>
+      <dl class="meta-grid">
+        <div><dt>مکان</dt><dd data-field="city"></dd></div>
+        <div><dt>سال</dt><dd data-field="year"></dd></div>
+        <div><dt>متراژ</dt><dd data-field="area"></dd></div>
+        <div><dt>وضعیت</dt><dd data-field="status"></dd></div>
+        <div><dt>برنامه</dt><dd data-field="type"></dd></div>
+        <div><dt>کارفرما</dt><dd data-field="client"></dd></div>
+      </dl>
+      <div class="viewer-nav">
+        <button type="button" id="viewer-prev">پروژهٔ قبلی</button>
+        <button type="button" id="viewer-next">پروژهٔ بعدی</button>
+      </div>
+    </div>
+    <div class="viewer-media">
+      <img class="viewer-img" alt="">
+      <span class="corner c1" aria-hidden="true"></span>
+      <span class="corner c2" aria-hidden="true"></span>
+      <span class="corner c3" aria-hidden="true"></span>
+      <span class="corner c4" aria-hidden="true"></span>
+    </div>
+  </div>
+
+  <script src="js/site.js"></script>
+</body>
+</html>

@@ -107,9 +107,45 @@
     </div>
 
     <section class="flip">
-      <p class="kicker">روش کار</p>
-      <h2>از یک خط،<br>تا یک بنا.</h2>
-      <p>قاب‌های پایین همان تختهٔ طراحی دفترند؛ خودشان ورق می‌خورند. روی هر عکس بایستید تا نامش خوانده شود.</p>
+      <div class="flip-copy">
+        <p class="kicker">روش کار</p>
+        <h2>از یک خط،<br>تا یک بنا.</h2>
+        <p>قاب‌های پایین همان تختهٔ طراحی دفترند؛ خودشان ورق می‌خورند. روی هر عکس بایستید تا نامش خوانده شود.</p>
+      </div>
+      <figure class="reel-card">
+        <div class="reel-stage">
+          <svg class="reel-svg" viewBox="0 0 800 500" role="img" aria-label="پویانمایی ساخت خانه: از یک خط افقی تا بنای کامل">
+            <defs>
+              <linearGradient id="reel-sky" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#3a3126"/>
+                <stop offset="0.55" stop-color="#1c1814"/>
+                <stop offset="1" stop-color="#0c0b0a"/>
+              </linearGradient>
+            </defs>
+            <rect width="800" height="500" fill="url(#reel-sky)"/>
+            <polygon class="mass mass-wall" points="230,198 560,198 560,372 230,372"/>
+            <polygon class="mass mass-roof" points="198,208 395,92 592,208"/>
+            <rect class="lamp" x="274" y="244" width="52" height="46" rx="2"/>
+            <rect class="lamp lamp-late" x="474" y="244" width="52" height="46" rx="2"/>
+            <g class="ink">
+              <path class="d1" pathLength="1" d="M64 372 H736"/>
+              <path class="d2" pathLength="1" d="M230 372 V198"/>
+              <path class="d2" pathLength="1" d="M560 372 V198"/>
+              <path class="d3" pathLength="1" d="M230 198 H560"/>
+              <path class="d4" pathLength="1" d="M198 208 L395 92"/>
+              <path class="d4" pathLength="1" d="M395 92 L592 208"/>
+              <path class="d5" pathLength="1" d="M356 372 V278 H434 V372"/>
+              <path class="d5" pathLength="1" d="M270 240 H330 V296 H270 Z"/>
+              <path class="d6" pathLength="1" d="M470 240 H530 V296 H470 Z"/>
+              <path class="d6" pathLength="1" d="M560 308 H668 V372"/>
+              <path class="d7" pathLength="1" d="M128 372 V292"/>
+              <path class="d7" pathLength="1" d="M128 292 C92 274 86 226 128 206 C170 226 164 274 128 292"/>
+            </g>
+          </svg>
+          <p class="reel-caption" aria-hidden="true"><span class="phase-line">یک خط</span><span class="phase-house">یک بنا</span></p>
+          <span class="reel-progress" aria-hidden="true"><i></i></span>
+        </div>
+      </figure>
     </section>
 
     <section class="index" id="projects">

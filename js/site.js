@@ -1,4 +1,4 @@
-/* آتلیه بُن — پروژه‌ها، متن‌ها و عکس‌ها را از همین فایل عوض کنید. */
+/* دکوراچین — پروژه‌ها، متن‌ها و عکس‌ها را از همین فایل عوض کنید. */
 
 const PROJECTS = [
   { id: "trav", title: "خانهٔ تراورتن", type: "مسکونی", city: "لواسان", year: "۱۴۰۴", area: "۴۸۰ متر",
@@ -56,23 +56,37 @@ function lockScroll(on) {
   $(".footer").inert = on;
 }
 
-/* Works */
+/* Works — each project is a scene; the backdrop takes the tone of its material. */
+const TONES = {
+  trav: "#2a241c", saye: "#1c1d20", ofogh: "#18211f", noor: "#2a1f17", ketab: "#241b14",
+  ajor: "#2f1a13", bad: "#2b2116", khat: "#1b1d1b", howz: "#16202a"
+};
+const ARROW = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.3"/></svg>';
+
 function buildWorks() {
-  const track = $("#works-track");
+  const wrap = $("#scenes");
+  const ticks = $("#works-ticks");
   PROJECTS.forEach((p, i) => {
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = "work";
-    btn.dataset.cursor = "view";
-    btn.setAttribute("aria-label", `${p.title}، ${p.city}، ${p.type}، ${p.year}. مشاهدهٔ پروژه`);
-    btn.innerHTML = `
-      <span class="work-media"><img src="${p.image}" alt="" loading="lazy" decoding="async" draggable="false"></span>
-      <span class="work-meta">
-        <span><span class="work-title">${p.title}</span><span class="work-sub">${p.city} · ${p.type} · ${p.year}</span></span>
-        <span class="work-no latin">${pad2(i + 1)}</span>
-      </span>`;
-    btn.addEventListener("click", () => openViewer(p.id, true));
-    track.append(btn);
+    const scene = document.createElement("article");
+    scene.className = "scene";
+    scene.setAttribute("aria-label", `${p.title}، ${p.city}`);
+    scene.innerHTML = `
+      <button type="button" class="scene-media" data-cursor="view" aria-label="مشاهدهٔ پروژهٔ ${p.title}">
+        <img src="${p.image}" alt="" ${i > 1 ? 'loading="lazy"' : ""} decoding="async" draggable="false">
+        <span class="scene-dim"></span>
+      </button>
+      <span class="scene-frame" aria-hidden="true"><i class="fc fc-tr"></i><i class="fc fc-bl"></i></span>
+      <span class="scene-slit" aria-hidden="true"></span>
+      <div class="scene-info">
+        <p class="scene-no" aria-hidden="true">${pad2(i + 1)}</p>
+        <h3 class="scene-title"><span class="line"><span>${p.title}</span></span></h3>
+        <p class="scene-meta"><span>${p.city}</span><span>${p.type}</span><span>${p.year}</span><span>${p.area}</span></p>
+        <p class="scene-text">${p.text}</p>
+        <button type="button" class="scene-cta">مشاهدهٔ پروژه ${ARROW}</button>
+      </div>`;
+    scene.querySelectorAll("button").forEach((b) => b.addEventListener("click", () => openViewer(p.id, true)));
+    wrap.append(scene);
+    ticks.append(document.createElement("i"));
   });
   $("#works-total").textContent = pad2(PROJECTS.length);
 }
@@ -357,51 +371,141 @@ function startMotion(gl) {
     .fromTo(".hero-after", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.3 }, 0.42)
     .to(".hero-after", { autoAlpha: 0, y: -30, duration: 0.2 }, 0.85);
 
-  const words = splitWords($("#manifesto-text"), "w");
-  gsap.to(words, {
-    opacity: 1,
-    stagger: 0.06,
-    ease: "none",
-    scrollTrigger: { trigger: "#manifesto-text", start: "top 82%", end: "bottom 50%", scrub: true }
+  const mPin = $(".manifesto-pin");
+  const mSteps = $$(".m-step");
+  const mMarks = $$(".m-progress li");
+  const mTl = gsap.timeline({
+    defaults: { ease: "none" },
+    onUpdate: () => {
+      const i = Math.min(3, Math.max(0, Math.floor(mTl.time() - 0.05)));
+      mMarks.forEach((li, j) => li.classList.toggle("is-on", j === i));
+    },
+    scrollTrigger: { trigger: ".manifesto", start: "top top", end: "bottom bottom", scrub: 1 }
   });
+  gsap.set([...mSteps, ".m-final"], { visibility: "visible" });
+  gsap.set(".m-word", { autoAlpha: 0, scale: 1.35, filter: "blur(18px)" });
+  gsap.set(".m-cap", { autoAlpha: 0, y: 30 });
+  gsap.set(".m-slogan .line > span", { yPercent: 110 });
+  gsap.set(".m-underline", { scaleX: 0 });
+  gsap.set([".m-trio > *", ".m-sign"], { autoAlpha: 0, y: 20 });
+  mSteps.forEach((step, i) => {
+    const word = $(".m-word", step);
+    const cap = $(".m-cap", step);
+    const last = i === mSteps.length - 1;
+    mTl
+      .to(word, { autoAlpha: 1, scale: 1, filter: "blur(0px)", duration: 0.42, ease: "power2.out" }, i + 0.02)
+      .to(cap, { autoAlpha: 1, y: 0, duration: 0.25, ease: "power2.out" }, i + 0.3)
+      .to(cap, { autoAlpha: 0, y: -20, duration: 0.15 }, i + 0.78)
+      .to(word, last
+        ? { autoAlpha: 0, scale: 1.25, filter: "blur(24px)", duration: 0.3, ease: "power1.in" }
+        : { autoAlpha: 0, scale: 0.82, y: -40, filter: "blur(8px)", duration: 0.25, ease: "power2.in" }, i + 0.78);
+  });
+  if (!finePointer) mTl.fromTo(mPin, { "--lx": "10%", "--ly": "30%" }, { "--lx": "90%", "--ly": "70%", duration: 0.9 }, 1);
+  mTl
+    .to(".m-slogan .line > span", { yPercent: 0, duration: 0.35, stagger: 0.1, ease: "power3.out" }, 3.05)
+    .to(".m-underline", { scaleX: 1, duration: 0.3, ease: "power2.inOut" }, 3.4)
+    .to(".m-trio > *", { autoAlpha: 1, y: 0, duration: 0.2, stagger: 0.04 }, 3.45)
+    .to(".m-sign", { autoAlpha: 1, y: 0, duration: 0.2 }, 3.6)
+    .to({}, { duration: 0.25 });
 
-  const track = $("#works-track");
-  const cards = $$(".work", track);
+  if (finePointer) {
+    const lightWord = $(".m-light");
+    mPin.addEventListener("pointermove", (e) => {
+      mPin.style.setProperty("--mx", ((e.clientX / window.innerWidth) * 2 - 1).toFixed(3));
+      mPin.style.setProperty("--my", ((e.clientY / window.innerHeight) * 2 - 1).toFixed(3));
+      const r = lightWord.getBoundingClientRect();
+      if (r.width) {
+        mPin.style.setProperty("--lx", `${(((e.clientX - r.left) / r.width) * 100).toFixed(1)}%`);
+        mPin.style.setProperty("--ly", `${(((e.clientY - r.top) / r.height) * 100).toFixed(1)}%`);
+      }
+    });
+  }
+
   const pin = $(".works-pin");
-  const distance = () => {
-    const cs = getComputedStyle(pin);
-    const column = cs.flexDirection.startsWith("column");
-    const before = parseFloat(cs.paddingInlineStart) + (column ? 0 : $(".works-head").offsetWidth + parseFloat(cs.columnGap || 0));
-    return Math.max(0, track.offsetWidth + before - pin.clientWidth);
-  };
+  const scenes = $$(".scene");
+  const ticks = $$("#works-ticks i");
   const nowEl = $("#works-now");
-  gsap.to(mobile ? track : [$(".works-head"), track], {
-    x: () => distance(),
-    ease: "none",
+  const lead = 0.5;
+  const sceneTl = gsap.timeline({
+    defaults: { ease: "none" },
+    onUpdate: () => {
+      const t = sceneTl.time() - lead;
+      const idx = Math.min(scenes.length - 1, Math.max(0, Math.floor(t + 0.02)));
+      nowEl.textContent = pad2(idx + 1);
+      ticks.forEach((tick, j) => tick.style.setProperty("--f", Math.min(1, Math.max(0, t - j + 0.3)).toFixed(3)));
+    },
     scrollTrigger: {
       trigger: ".works",
       start: "top top",
-      end: () => `+=${distance() + window.innerHeight * 0.4}`,
-      pin: ".works-pin",
-      scrub: 1,
-      invalidateOnRefresh: true,
-      onUpdate: (self) => {
-        nowEl.textContent = pad2(Math.min(PROJECTS.length, Math.round(self.progress * (PROJECTS.length - 1)) + 1));
-        const vw = window.innerWidth;
-        cards.forEach((card) => {
-          const r = card.getBoundingClientRect();
-          const off = ((r.left + r.width / 2 - vw / 2) / vw) * -10;
-          card.style.setProperty("--px", `${off.toFixed(2)}%`);
-        });
-      }
+      end: () => `+=${window.innerHeight * (scenes.length * 0.95 + 0.6)}`,
+      pin,
+      scrub: 1.2,
+      invalidateOnRefresh: true
     }
   });
-  gsap.from(cards, { yPercent: 18, autoAlpha: 0, duration: 1.4, stagger: 0.08, ease: "expo.out", scrollTrigger: { trigger: ".works", start: "top 70%" } });
+  sceneTl.to(".works-intro", { autoAlpha: 0, scale: 0.9, filter: "blur(6px)", duration: 0.5, ease: "power1.in" }, 0.25);
+  scenes.forEach((scene, i) => {
+    const at = lead + i;
+    const media = $(".scene-media", scene);
+    const img = $("img", scene);
+    const slit = $(".scene-slit", scene);
+    const title = $(".scene-title .line > span", scene);
+    const rest = $$(".scene-no, .scene-meta, .scene-text, .scene-cta", scene);
+    const frame = $(".scene-frame", scene);
+    const corners = $$(".fc", scene);
+    gsap.set(corners, { scale: 0, autoAlpha: 0 });
+    sceneTl
+      .to(corners, { scale: 1, autoAlpha: 1, duration: 0.3, stagger: 0.08, ease: "power3.out" }, at + 0.42)
+      .fromTo(slit, { scaleY: 0, autoAlpha: 1 }, { scaleY: 1, duration: 0.2, ease: "power2.out" }, at - 0.12)
+      .fromTo(media, { clipPath: "inset(0% 50% 0% 50%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.55, ease: "power3.inOut" }, at + 0.06)
+      .to(slit, { autoAlpha: 0, duration: 0.25 }, at + 0.2)
+      .fromTo(img, { scale: 1.4 }, { scale: 1, duration: 0.9, ease: "power2.out" }, at + 0.06)
+      .to(pin, { backgroundColor: TONES[PROJECTS[i].id] || "#0b0a09", duration: 0.5 }, at)
+      .fromTo(title, { yPercent: 115 }, { yPercent: 0, duration: 0.4, ease: "power3.out" }, at + 0.28)
+      .fromTo(rest, { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.32, stagger: 0.05, ease: "power2.out" }, at + 0.34);
+    if (i < scenes.length - 1) {
+      const out = at + 1;
+      sceneTl
+        .to(rest, { autoAlpha: 0, y: -30, duration: 0.2, stagger: 0.02 }, out - 0.06)
+        .to(title, { yPercent: -115, duration: 0.25, ease: "power2.in" }, out - 0.06)
+        .to(media, { scale: 0.86, duration: 0.6, ease: "power2.inOut" }, out)
+        .to(frame, { scale: 0.86, autoAlpha: 0, duration: 0.5, ease: "power2.inOut" }, out)
+        .to($(".scene-dim", scene), { opacity: 0.72, duration: 0.6 }, out)
+        .set(scene, { pointerEvents: "none", visibility: "hidden" }, out + 0.62);
+    }
+  });
+  sceneTl.to({}, { duration: 0.35 });
+
+  if (finePointer) {
+    const imgs = $$(".scene-media img", pin);
+    const drift = (mx, my) => {
+      pin.style.setProperty("--mx", mx.toFixed(3));
+      pin.style.setProperty("--my", my.toFixed(3));
+      gsap.to(imgs, { x: mx * -18, y: my * -12, duration: 1.2, ease: "power3.out", overwrite: "auto" });
+    };
+    pin.addEventListener("pointermove", (e) => drift((e.clientX / window.innerWidth) * 2 - 1, (e.clientY / window.innerHeight) * 2 - 1));
+    pin.addEventListener("pointerleave", () => drift(0, 0));
+  }
 
   $$(".split").forEach((el) => {
     const parts = splitWords(el, "wm");
     gsap.from(parts, { yPercent: 105, duration: 1.3, stagger: 0.05, ease: "expo.out", scrollTrigger: { trigger: el, start: "top 82%" } });
   });
+  $$(".sep").forEach((el) => {
+    gsap.timeline({ scrollTrigger: { trigger: el, start: "top 85%" } })
+      .from($$("i", el), { scaleX: 0, duration: 1.6, ease: "expo.out" })
+      .from($$("b", el), { scale: 0, rotate: 225, duration: 1.1, ease: "back.out(2)" }, 0.2)
+      .from($$("span", el), { autoAlpha: 0, letterSpacing: "1.2em", duration: 1.2, ease: "power3.out" }, 0.3);
+  });
+  const quote = $(".passage-quote");
+  if (quote) {
+    splitWords(quote, "pw");
+    const words = $$(".pw, em", quote);
+    gsap.fromTo(words, { opacity: 0.12, filter: "blur(4px)" }, {
+      opacity: 1, filter: "blur(0px)", stagger: 0.1, ease: "none",
+      scrollTrigger: { trigger: quote, start: "top 80%", end: "bottom 45%", scrub: 1 }
+    });
+  }
   $$(".fade-up").forEach((el) => {
     gsap.to(el, { autoAlpha: 1, y: 0, duration: 1.2, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 85%" } });
   });
@@ -422,8 +526,11 @@ function startMotion(gl) {
   });
 
   const paths = $$(".b-ink path");
-  const wall = $(".b-wall");
+  const walls = $$(".b-wall");
   const roof = $(".b-roof");
+  const notes = $$(".b-notes text");
+  const pen = $(".b-pen");
+  const lengths = new Map(paths.map((p) => [p, p.getTotalLength()]));
   const lamps = $$(".b-lamp");
   const halo = $(".b-halo");
   const stepsEl = $$("#steps li");
@@ -433,13 +540,22 @@ function startMotion(gl) {
   const groups = [0, 1, 2, 3].map((s) => paths.filter((p) => Number(p.dataset.step) === s));
   const drawBuild = (p) => {
     const f = p * 4;
+    let tip = null;
     groups.forEach((group, s) => {
       group.forEach((path, i) => {
         const local = clamp((f - s - (i / group.length) * 0.5) / 0.6);
         path.style.setProperty("--d", (1 - local).toFixed(4));
+        if (local > 0 && local < 1) tip = [path, local];
       });
     });
-    wall.style.setProperty("--s", clamp((f - 1.3) / 0.7).toFixed(4));
+    if (tip) {
+      const pt = tip[0].getPointAtLength(lengths.get(tip[0]) * tip[1]);
+      pen.setAttribute("cx", pt.x.toFixed(1));
+      pen.setAttribute("cy", pt.y.toFixed(1));
+    }
+    pen.style.setProperty("--o", tip ? 1 : 0);
+    notes.forEach((t) => t.style.setProperty("--o", clamp((f - Number(t.dataset.step) - 0.45) / 0.3).toFixed(3)));
+    walls.forEach((w, i) => w.style.setProperty("--s", clamp((f - 1.3 - i * 0.12) / 0.6).toFixed(4)));
     roof.style.setProperty("--s", clamp((f - 2.3) / 0.6).toFixed(4));
     lamps.forEach((lamp, i) => lamp.style.setProperty("--o", clamp((f - 3.2 - i * 0.12) / 0.4).toFixed(4)));
     halo.style.setProperty("--o", clamp((f - 3.4) / 0.5).toFixed(4));

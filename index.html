@@ -3,13 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>آتلیه بُن | معماری معاصر</title>
-  <meta name="description" content="آتلیه بُن، استودیوی معماری معاصر در تهران. خانه، فضای فرهنگی و داخلی؛ آرام، دقیق و ماندگار.">
+  <title>دکوراچین | معماری معاصر</title>
+  <meta name="description" content="دکوراچین، استودیوی معماری معاصر در تهران. خانه، فضای فرهنگی و داخلی؛ آرام، دقیق و ماندگار.">
   <meta name="theme-color" content="#0b0a09">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Vazirmatn:wght@200;300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="preload" href="assets/fonts/el-messiri-arabic-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/vazirmatn-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/hero.mp4" as="video" type="video/mp4">
   <link rel="stylesheet" href="css/site.css">
   <script>
@@ -30,15 +29,15 @@
     <span class="curtain-bar curtain-top"></span>
     <span class="curtain-bar curtain-bottom"></span>
     <span class="curtain-line"></span>
-    <span class="curtain-mark">Atelier BON</span>
+    <span class="curtain-mark">Decorachin</span>
   </div>
 
   <div class="cursor" aria-hidden="true"><span class="cursor-dot"></span><span class="cursor-ring"><em>مشاهده</em></span></div>
 
   <header class="header">
-    <a class="logo" href="#top" aria-label="آتلیه بُن، بازگشت به آغاز">
+    <a class="logo" href="#top" aria-label="دکوراچین، بازگشت به آغاز">
       <svg viewBox="0 0 32 32" width="20" height="20" aria-hidden="true"><path d="M6 6h12M6 6v20h20" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
-      <span class="latin">BON</span>
+      <span class="latin">DECORACHIN</span>
     </a>
     <nav class="nav" aria-label="اصلی">
       <a href="#works">پروژه‌ها</a>
@@ -59,11 +58,11 @@
       <a href="#process"><small class="latin">03</small>روش کار</a>
       <a href="#contact"><small class="latin">04</small>تماس</a>
     </nav>
-    <p class="menu-mail"><a href="mailto:studio@bonatelier.ir">studio@bonatelier.ir</a></p>
+    <p class="menu-mail"><a href="mailto:studio@decorachin.ir">studio@decorachin.ir</a></p>
   </div>
 
   <main id="main">
-    <section class="hero" id="top" aria-label="آتلیه بُن">
+    <section class="hero" id="top" aria-label="دکوراچین">
       <div class="hero-pin">
         <div class="hero-frame">
           <video class="hero-video" id="hero-video" src="assets/hero.mp4" muted loop playsinline autoplay preload="auto" aria-hidden="true"></video>
@@ -72,7 +71,7 @@
         </div>
 
         <div class="hero-copy">
-          <p class="hero-eyebrow"><span class="latin">Atelier BON</span><i></i><span>استودیوی معماری · تهران</span></p>
+          <p class="hero-eyebrow"><span class="latin">Decorachin</span><i></i><span>استودیوی معماری · تهران</span></p>
           <h1 class="hero-title">
             <span class="line"><span>فضا را</span></span>
             <span class="line"><span>از <em>نور</em> می‌سازیم</span></span>
@@ -87,28 +86,59 @@
       </div>
     </section>
 
-    <section class="manifesto" data-theme="dark" aria-label="بیانیه">
-      <p class="kicker latin">— Manifesto</p>
-      <p class="manifesto-text" id="manifesto-text">ما ساختمان را از سکوت ماده بالا می‌آوریم. سنگ، آجر، چوب و ضخامت دیوار پیش از فرم انتخاب می‌شوند، تا آنچه می‌ماند آرام باشد و در اقلیم خودش قابل زندگی.</p>
-    </section>
+    <section class="manifesto" id="manifesto" data-theme="dark" aria-labelledby="manifesto-title">
+      <div class="manifesto-pin">
+        <p class="kicker latin m-kicker">— Manifesto</p>
 
-    <section class="works" id="works" data-theme="light" aria-label="پروژه‌های منتخب">
-      <div class="works-pin">
-        <div class="works-head">
-          <p class="kicker latin">— Selected Works</p>
-          <h2>پروژه‌های<br>منتخب</h2>
-          <p class="works-count"><span class="latin" id="works-now">01</span><i></i><span class="latin" id="works-total">09</span></p>
+        <div class="m-step m-step-matter">
+          <p class="m-word m-matter">ماده</p>
+          <p class="m-cap"><span class="latin">I — Matter</span>سنگ، آجر، چوب و ضخامت دیوار؛ پیش از هر فرمی انتخاب می‌شوند.</p>
         </div>
-        <div class="works-track" id="works-track"></div>
+        <div class="m-step m-step-light">
+          <p class="m-word m-light">نور</p>
+          <p class="m-cap"><span class="latin">II — Light</span>نور تنها مصالحی است که هزینه ندارد؛ فقط باید جایش را بلد بود.</p>
+        </div>
+        <div class="m-step m-step-silence">
+          <p class="m-word m-silence">سکوت</p>
+          <p class="m-cap"><span class="latin">III — Silence</span>آنچه در پایان می‌ماند، آرام است و در اقلیم خودش زندگی می‌کند.</p>
+        </div>
+
+        <div class="m-final">
+          <h2 class="m-slogan" id="manifesto-title">
+            <span class="line"><span>ما فضا را نمی‌سازیم؛</span></span>
+            <span class="line"><span>آن را <em>می‌چینیم<i class="m-underline" aria-hidden="true"></i></em>.</span></span>
+          </h2>
+          <p class="m-trio" aria-label="ماده، نور، سکوت"><span>ماده</span><i></i><span>نور</span><i></i><span>سکوت</span></p>
+          <p class="m-sign"><span class="latin">Decorachin</span> — هنرِ چیدنِ ماده، نور و سکوت.</p>
+        </div>
+
+        <ol class="m-progress latin" aria-hidden="true"><li>I</li><li>II</li><li>III</li><li>IV</li></ol>
       </div>
     </section>
+
+    <section class="works" id="works" data-theme="dark" aria-labelledby="works-title">
+      <div class="works-pin">
+        <div class="works-intro">
+          <p class="kicker latin">— Selected Works</p>
+          <h2 id="works-title">پروژه‌های منتخب</h2>
+          <p class="works-lead">نُه بنا، نُه ماده، نُه نور.</p>
+        </div>
+        <div class="scenes" id="scenes"></div>
+        <div class="works-hud" aria-hidden="true">
+          <p class="works-count latin"><span id="works-now">01</span><i></i><span id="works-total">09</span></p>
+          <div class="works-ticks" id="works-ticks"></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="sep" aria-hidden="true"><i></i><b></b><span class="latin">II</span><b></b><i></i></div>
 
     <section class="studio" id="studio" data-theme="light" aria-label="استودیو">
       <div class="studio-grid">
         <div class="studio-copy">
           <p class="kicker latin">— Studio</p>
           <h2 class="split">دفتر، یک اتاق بلند است با یک میز نمونه.</h2>
-          <p class="fade-up">آتلیه بُن روی خانه‌هایی کار می‌کند که حیاط دارند، فضاهای فرهنگی کم‌ادعا، و داخلی‌هایی که نور روز را هدر نمی‌دهند. تراورتن، آجر قزاقی، خاک کاشان و برادهٔ مس، پیش از هر نقشه‌ای روی همین میز کنار هم می‌نشینند.</p>
+          <p class="fade-up">دکوراچین روی خانه‌هایی کار می‌کند که حیاط دارند، فضاهای فرهنگی کم‌ادعا، و داخلی‌هایی که نور روز را هدر نمی‌دهند. تراورتن، آجر قزاقی، خاک کاشان و برادهٔ مس، پیش از هر نقشه‌ای روی همین میز کنار هم می‌نشینند.</p>
           <dl class="stats">
             <div><dt>سال کار</dt><dd class="latin" data-count="8">0</dd></div>
             <div><dt>پروژهٔ ساخته‌شده</dt><dd class="latin" data-count="34">0</dd></div>
@@ -120,6 +150,8 @@
         </figure>
       </div>
     </section>
+
+    <div class="sep" aria-hidden="true"><i></i><b></b><span class="latin">III</span><b></b><i></i></div>
 
     <section class="process" id="process" data-theme="dark" aria-label="روش کار: از یک خط تا یک بنا">
       <div class="process-pin">
@@ -148,41 +180,64 @@
             <g class="grid-lines" stroke="#c9a96e" stroke-opacity="0.08">
               <path d="M0 140H800M0 280H800M0 420H800M160 0V560M320 0V560M480 0V560M640 0V560"/>
             </g>
-            <ellipse class="b-halo" cx="400" cy="420" rx="300" ry="70" fill="url(#halo)"/>
-            <rect class="b-fill b-wall" x="240" y="236" width="320" height="184" fill="#e6cf9f" fill-opacity="0.06"/>
-            <polygon class="b-fill b-roof" points="214,244 400,128 586,244" fill="#c9a96e" fill-opacity="0.16"/>
-            <rect class="b-lamp" x="282" y="282" width="56" height="52" fill="url(#glow)"/>
-            <rect class="b-lamp" x="462" y="282" width="56" height="52" fill="url(#glow)"/>
-            <rect class="b-lamp" x="374" y="330" width="52" height="90" fill="url(#glow)"/>
-            <g class="b-ink" fill="none" stroke="#e6cf9f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <path data-step="0" pathLength="1" d="M720 420H80"/>
-              <path data-step="1" pathLength="1" d="M240 420V236"/>
-              <path data-step="1" pathLength="1" d="M560 420V236"/>
-              <path data-step="1" pathLength="1" d="M240 236H560"/>
-              <path data-step="1" pathLength="1" d="M560 340H680V420"/>
-              <path data-step="2" pathLength="1" d="M214 244L400 128L586 244"/>
-              <path data-step="2" pathLength="1" d="M400 128V96"/>
-              <path data-step="2" pathLength="1" d="M150 420C150 380 150 350 150 330M150 330C116 316 110 268 150 250C190 268 184 316 150 330"/>
-              <path data-step="3" pathLength="1" d="M282 282H338V334H282Z"/>
-              <path data-step="3" pathLength="1" d="M462 282H518V334H462Z"/>
-              <path data-step="3" pathLength="1" d="M374 420V330H426V420"/>
-              <path data-step="3" pathLength="1" d="M590 366H650V394H590Z"/>
+            <ellipse class="b-halo" cx="440" cy="432" rx="330" ry="58" fill="url(#halo)"/>
+            <rect class="b-fill b-wall" x="120" y="344" width="80" height="86" fill="#c9a96e" fill-opacity="0.14"/>
+            <rect class="b-fill b-wall" x="200" y="300" width="400" height="130" fill="#e6cf9f" fill-opacity="0.07"/>
+            <rect class="b-fill b-wall" x="300" y="200" width="400" height="100" fill="#e6cf9f" fill-opacity="0.11"/>
+            <rect class="b-fill b-roof" x="280" y="186" width="450" height="14" fill="#e6cf9f" fill-opacity="0.85"/>
+            <rect class="b-lamp" x="240" y="322" width="200" height="108" fill="url(#glow)"/>
+            <rect class="b-lamp" x="480" y="226" width="200" height="52" fill="url(#glow)"/>
+            <rect class="b-lamp" x="500" y="344" width="44" height="86" fill="url(#glow)"/>
+            <g class="b-ink" fill="none" stroke="#e6cf9f" stroke-linecap="round" stroke-linejoin="round">
+              <path data-step="0" pathLength="1" stroke-width="2.6" d="M760 430H40"/>
+              <path data-step="0" pathLength="1" stroke-width="0.9" d="M60 430l-14 14M100 430l-14 14M140 430l-14 14M180 430l-14 14M220 430l-14 14M260 430l-14 14M300 430l-14 14M340 430l-14 14M380 430l-14 14M420 430l-14 14M460 430l-14 14M500 430l-14 14M540 430l-14 14M580 430l-14 14M620 430l-14 14M660 430l-14 14M700 430l-14 14M740 430l-14 14"/>
+              <path class="b-guide" data-step="1" pathLength="1" d="M200 474V120M300 474V110M600 474V260M700 474V110"/>
+              <path class="b-guide" data-step="1" pathLength="1" d="M60 300H784M160 200H784"/>
+              <path data-step="1" pathLength="1" stroke-width="2.4" d="M200 430V300H600V430"/>
+              <path data-step="1" pathLength="1" stroke-width="2.4" d="M300 300V200H700V300H600"/>
+              <path data-step="1" pathLength="1" stroke-width="1.6" d="M120 430V344H200"/>
+              <path data-step="1" pathLength="1" stroke-width="0.8" d="M120 366H200M120 388H200M120 410H200M160 344V366M140 366V388M178 366V388M160 388V410M132 410V430M184 410V430"/>
+              <path data-step="2" pathLength="1" stroke-width="2.8" d="M280 200V186H730V200H280"/>
+              <path data-step="2" pathLength="1" stroke-width="1" d="M330 200V300M352 200V300M374 200V300M396 200V300M418 200V300M440 200V300"/>
+              <path data-step="2" pathLength="1" stroke-width="0.7" d="M600 326L626 300M600 358L658 300M600 390L690 300M600 422L700 322M624 430L700 354M656 430L700 386M688 430L700 418"/>
+              <path data-step="2" pathLength="1" stroke-width="1.2" d="M86 430V316M86 352L66 332M86 340L104 322M48 290a38 38 0 1 0 76 0a38 38 0 1 0 -76 0"/>
+              <path class="b-guide" data-step="2" pathLength="1" d="M280 150H730M280 140V160M730 140V160"/>
+              <path data-step="3" pathLength="1" stroke-width="1.5" d="M240 430V322H440V430M290 322V430M340 322V430M390 322V430"/>
+              <path data-step="3" pathLength="1" stroke-width="1.5" d="M480 226H680V278H480ZM546 226V278M613 226V278"/>
+              <path data-step="3" pathLength="1" stroke-width="1.5" d="M500 430V344H544V430"/>
+              <path data-step="3" pathLength="1" stroke-width="1.4" d="M626 82a22 22 0 1 0 44 0a22 22 0 1 0 -44 0"/>
+              <path class="b-guide" data-step="3" pathLength="1" d="M630 100L560 226M636 104L410 322M644 106L522 344"/>
             </g>
+            <g class="b-notes latin" fill="#c9a96e" font-size="15" font-style="italic">
+              <text data-step="1" x="792" y="296" text-anchor="end">+3.20</text>
+              <text data-step="1" x="792" y="196" text-anchor="end">+6.40</text>
+              <text data-step="0" x="792" y="424" text-anchor="end">±0.00</text>
+              <text data-step="2" x="505" y="136" text-anchor="middle">13.50</text>
+            </g>
+            <circle class="b-pen" r="4.5" fill="#fff6e0"/>
           </svg>
           <figcaption class="process-meter"><span class="latin" id="meter-no">01</span><span class="meter-bar"><i id="meter-bar"></i></span><span class="latin">04</span></figcaption>
         </figure>
       </div>
     </section>
 
+    <section class="passage" data-theme="dark" aria-label="گذرگاه">
+      <div class="sep" aria-hidden="true"><i></i><b></b><span class="latin">Passage</span><b></b><i></i></div>
+      <blockquote class="passage-text">
+        <p class="passage-quote">خانه‌ای که درست چیده شود، سال‌ها بعد هم <em>حرف تازه</em> دارد؛ فقط باید در سکوتش ایستاد و گوش داد.</p>
+        <footer class="latin">— Decorachin</footer>
+      </blockquote>
+    </section>
+
     <section class="contact" id="contact" data-theme="dark" aria-label="تماس">
       <p class="kicker latin">— Contact</p>
       <h2 class="contact-title split">بیایید با هم<br>بسازیم.</h2>
-      <a class="contact-cta magnetic" href="mailto:studio@bonatelier.ir"><span>studio@bonatelier.ir</span></a>
+      <a class="contact-cta magnetic" href="mailto:studio@decorachin.ir"><span>studio@decorachin.ir</span></a>
       <div class="contact-grid">
         <ul class="contact-meta">
           <li><span>نشانی</span>خیابان کریمخان زند، تهران</li>
           <li><span>ساعت کار</span>شنبه تا چهارشنبه، ۱۰ تا ۱۸</li>
-          <li><span>تلفن</span><bdi class="latin">+98 21 0000 0000</bdi></li>
+          <li><span>تلفن</span><span class="phones"><a href="tel:+982122488277"><bdi class="latin">021 2248 8277</bdi></a><a href="tel:+989127992036"><bdi class="latin">0912 799 2036</bdi></a></span></li>
         </ul>
         <form id="contact-form" novalidate>
           <div class="field">
@@ -212,8 +267,8 @@
   </main>
 
   <footer class="footer" data-theme="dark">
-    <p class="footer-mark latin">Atelier BON</p>
-    <p>آتلیه بُن · معماری معاصر · تهران</p>
+    <p class="footer-mark latin">Decorachin</p>
+    <p>دکوراچین · معماری معاصر · تهران</p>
     <p class="footer-note">ویدیو و تصاویر این نسخه نمونه‌اند و باید با کارهای استودیو جایگزین شوند.</p>
   </footer>
 

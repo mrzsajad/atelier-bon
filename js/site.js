@@ -1,1028 +1,484 @@
-/* آتلیه بُن — نسخهٔ نمونه
-   پروژه‌ها، نام استودیو و عکس‌ها را از همین فایل عوض کنید. */
+/* آتلیه بُن — پروژه‌ها، متن‌ها و عکس‌ها را از همین فایل عوض کنید. */
 
 const PROJECTS = [
-  {
-    id: "trav",
-    title: "خانهٔ تراورتن",
-    type: "مسکونی",
-    city: "لواسان",
-    year: "۱۴۰۴",
-    area: "۴۸۰ متر",
-    status: "ساخته‌شده",
-    client: "خصوصی",
-    tone: "#6d645c",
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=70",
-    text: "حجمی از سنگ روشن که دور یک حیاط مرکزی نشسته است. نور ظهر از شکاف بام وارد می‌شود و عصر، سایهٔ رواق را روی کف می‌کشد."
-  },
-  {
-    id: "saye",
-    title: "گالری سایه",
-    type: "فرهنگی",
-    city: "تهران",
-    year: "۱۴۰۳",
-    area: "۹۲۰ متر",
-    status: "ساخته‌شده",
-    client: "مجموعهٔ خصوصی",
-    tone: "#3e4a55",
-    image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1400&q=70",
-    text: "گالری کوچکی در بافت شهری، با سقف بلند و نور شمال. دیوارها گچ دست‌ساز دارند تا اثر دیده شود، نه بنا."
-  },
-  {
-    id: "ofogh",
-    title: "ویلای افق",
-    type: "مسکونی",
-    city: "دماوند",
-    year: "۱۴۰۳",
-    area: "۶۱۰ متر",
-    status: "ساخته‌شده",
-    client: "خصوصی",
-    tone: "#5c5348",
-    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1400&q=70",
-    text: "سه صفحهٔ افقی روی شیب. هر طبقه یک قاب به سمت دره است و باد از میان حیاط میانی عبور می‌کند."
-  },
-  {
-    id: "noor",
-    title: "آپارتمان نور",
-    type: "داخلی",
-    city: "الهیه",
-    year: "۱۴۰۲",
-    area: "۲۴۰ متر",
-    status: "ساخته‌شده",
-    client: "خصوصی",
-    tone: "#4a4038",
-    image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1400&q=70",
-    text: "بازسازی یک آپارتمان دههٔ پنجاه. تیغه‌ها کم شد، یک دیوار بلوط ماند، و نور غرب با پردهٔ کتان مهار شد."
-  },
-  {
-    id: "ketab",
-    title: "کتابخانهٔ حیاط",
-    type: "فرهنگی",
-    city: "کاشان",
-    year: "۱۴۰۲",
-    area: "۱۱۰۰ متر",
-    status: "در حال اجرا",
-    client: "شهرداری",
-    tone: "#6a5a4a",
-    image: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1400&q=70",
-    text: "خواندن دور یک حوض. طاق‌ها نو نیستند؛ ادامهٔ همان سایه‌ای هستند که کوچه از قبل داشت."
-  },
-  {
-    id: "ajor",
-    title: "کافهٔ آجر",
-    type: "تجاری",
-    city: "اصفهان",
-    year: "۱۴۰۴",
-    area: "۱۸۰ متر",
-    status: "ساخته‌شده",
-    client: "خصوصی",
-    tone: "#3f3a36",
-    image: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1400&q=70",
-    text: "یک قوس، یک پیشخوان بلند، و آجر محلی که بدون رنگ اضافه رها شده. شب، فقط یک خط نور گرم داخل طاق می‌ماند."
-  },
-  {
-    id: "bad",
-    title: "خانهٔ باد",
-    type: "مسکونی",
-    city: "هرمز",
-    year: "۱۴۰۱",
-    area: "۳۲۰ متر",
-    status: "ساخته‌شده",
-    client: "خصوصی",
-    tone: "#5a6570",
-    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1400&q=70",
-    text: "دیوارهای ضخیم، حیاط کوچک، و بادگیری معاصر. رنگ خاک جزیره روی بدنهٔ بیرونی مانده است."
-  },
-  {
-    id: "khat",
-    title: "دفتر خط",
-    type: "اداری",
-    city: "تهران",
-    year: "۱۴۰۳",
-    area: "۷۴۰ متر",
-    status: "ساخته‌شده",
-    client: "نشر خصوصی",
-    tone: "#4d463f",
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1400&q=70",
-    text: "دفتری برای یک نشر. قفسه‌ها سازه‌اند، میزها میان آن‌ها نشسته‌اند، و یک شکاف سقفی میز ویرایش را روشن می‌کند."
-  },
-  {
-    id: "howz",
-    title: "خانهٔ حوض",
-    type: "مسکونی",
-    city: "یزد",
-    year: "۱۴۰۴",
-    area: "۵۴۰ متر",
-    status: "در حال اجرا",
-    client: "خصوصی",
-    tone: "#6b5e50",
-    image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1400&q=70",
-    text: "حیاط در مرکز است. تابستان، آب و سایهٔ دیوار بلند دما را می‌گیرد. زمستان، اتاق جنوبی تمام آفتاب را برمی‌دارد."
-  }
+  { id: "trav", title: "خانهٔ تراورتن", type: "مسکونی", city: "لواسان", year: "۱۴۰۴", area: "۴۸۰ متر",
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=72",
+    text: "حجمی از سنگ روشن که دور یک حیاط مرکزی نشسته است. نور ظهر از شکاف بام وارد می‌شود و عصر، سایهٔ رواق را روی کف می‌کشد." },
+  { id: "saye", title: "گالری سایه", type: "فرهنگی", city: "تهران", year: "۱۴۰۳", area: "۹۲۰ متر",
+    image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=72",
+    text: "گالری کوچکی در بافت شهری، با سقف بلند و نور شمال. دیوارها گچ دست‌ساز دارند تا اثر دیده شود، نه بنا." },
+  { id: "ofogh", title: "ویلای افق", type: "مسکونی", city: "دماوند", year: "۱۴۰۳", area: "۶۱۰ متر",
+    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=72",
+    text: "سه صفحهٔ افقی روی شیب. هر طبقه یک قاب به سمت دره است و باد از میان حیاط میانی عبور می‌کند." },
+  { id: "noor", title: "آپارتمان نور", type: "داخلی", city: "الهیه", year: "۱۴۰۲", area: "۲۴۰ متر",
+    image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=72",
+    text: "بازسازی یک آپارتمان دههٔ پنجاه. تیغه‌ها کم شد، یک دیوار بلوط ماند، و نور غرب با پردهٔ کتان مهار شد." },
+  { id: "ketab", title: "کتابخانهٔ حیاط", type: "فرهنگی", city: "کاشان", year: "۱۴۰۲", area: "۱۱۰۰ متر",
+    image: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=72",
+    text: "خواندن دور یک حوض. طاق‌ها نو نیستند؛ ادامهٔ همان سایه‌ای هستند که کوچه از قبل داشت." },
+  { id: "ajor", title: "کافهٔ آجر", type: "تجاری", city: "اصفهان", year: "۱۴۰۴", area: "۱۸۰ متر",
+    image: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=72",
+    text: "یک قوس، یک پیشخوان بلند، و آجر محلی که بدون رنگ اضافه رها شده. شب، فقط یک خط نور گرم داخل طاق می‌ماند." },
+  { id: "bad", title: "خانهٔ باد", type: "مسکونی", city: "هرمز", year: "۱۴۰۱", area: "۳۲۰ متر",
+    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=72",
+    text: "دیوارهای ضخیم، حیاط کوچک، و بادگیری معاصر. رنگ خاک جزیره روی بدنهٔ بیرونی مانده است." },
+  { id: "khat", title: "دفتر خط", type: "اداری", city: "تهران", year: "۱۴۰۳", area: "۷۴۰ متر",
+    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=72",
+    text: "دفتری برای یک نشر. قفسه‌ها سازه‌اند، میزها میان آن‌ها نشسته‌اند، و یک شکاف سقفی میز ویرایش را روشن می‌کند." },
+  { id: "howz", title: "خانهٔ حوض", type: "مسکونی", city: "یزد", year: "۱۴۰۴", area: "۵۴۰ متر",
+    image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=72",
+    text: "حیاط در مرکز است. تابستان، آب و سایهٔ دیوار بلند دما را می‌گیرد. زمستان، اتاق جنوبی تمام آفتاب را برمی‌دارد." }
 ];
 
-const MATERIALS = [
-  { name: "تراورتن", place: "عباس‌آباد", tone: "#cbbba4", ratioW: 340, image: "https://images.unsplash.com/photo-1615971677499-5467cbab01c0?auto=format&fit=crop&w=1200&q=70" },
-  { name: "آجر قزاقی", place: "یزد", tone: "#8d4a3a", ratioW: 260, image: "https://images.unsplash.com/photo-1599619351208-3e6c839d6828?auto=format&fit=crop&w=1200&q=70" },
-  { name: "بتن اکسپوز", place: "کارگاه", tone: "#8a8a86", ratioW: 420, image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1200&q=70" },
-  { name: "بلوط", place: "داخل", tone: "#a67c52", ratioW: 300, image: "https://images.unsplash.com/photo-1541123603104-512919d6a96c?auto=format&fit=crop&w=1200&q=70" },
-  { name: "گچ آهکی", place: "کاشان", tone: "#d9d3c7", ratioW: 240, image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=70" },
-  { name: "مس کهنه", place: "جزئیات", tone: "#8a6a45", ratioW: 360, image: "https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&w=1200&q=70" }
-];
+const $ = (s, el = document) => el.querySelector(s);
+const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+const root = document.documentElement;
+const reduce = root.classList.contains("reduce-motion");
+const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+const animate = !reduce && Boolean(window.gsap && window.ScrollTrigger);
+const pad2 = (n) => String(n).padStart(2, "0");
+window.__bonBooted = true;
+if (!animate) root.classList.remove("js-anim");
 
-const WIDTHS = [300, 470, 230, 390, 560, 250, 420, 210, 340];
-const ARROW = `<svg class="row-go" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>`;
-
-const reduce = document.documentElement.classList.contains("reduce-motion");
-const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-const strips = [];
-let activeId = PROJECTS[0].id;
+const header = $(".header");
+const menu = $("#menu");
+const menuBtn = $(".menu-btn");
+const viewer = $("#viewer");
+const main = $("#main");
+let lenis = null;
 let openId = null;
-let filter = "همه";
 let viewerReturn = null;
-let menuReturn = null;
 
-const heroBoard = document.getElementById("hero-board");
-const materialBoard = document.getElementById("material-board");
-const list = document.getElementById("project-list");
-const filtersEl = document.getElementById("filters");
-const countEl = document.getElementById("project-count");
-const emptyEl = document.getElementById("empty");
-const indexImg = document.getElementById("index-img");
-const indexKicker = document.getElementById("index-kicker");
-const indexTitle = document.getElementById("index-caption-title");
-const indexOpen = document.getElementById("index-open");
-const viewer = document.getElementById("viewer");
-const menu = document.getElementById("nav-overlay");
-const header = document.querySelector(".header");
-const main = document.getElementById("main");
-const footer = document.querySelector(".footer");
-const skip = document.querySelector(".skip");
-const datum = document.getElementById("datum");
-const notch = document.getElementById("datum-notch");
-const hero = document.querySelector(".stage");
-const instNo = document.getElementById("inst-no");
-const instTitle = document.getElementById("inst-title");
-const pauseBtn = document.getElementById("pause");
-const progress = document.getElementById("progress");
-const loader = document.getElementById("loader");
-const loadPct = document.getElementById("load-pct");
-
-class Filmstrip {
-  constructor(row, { speed, direction, index }) {
-    this.row = row;
-    this.track = row.querySelector(".track");
-    this.group = row.querySelector(".group");
-    this.speed = speed;
-    this.direction = direction;
-    this.index = index;
-    this.offset = 0;
-    this.vx = 0;
-    this.gliding = false;
-    this.dragging = false;
-    this.pending = false;
-    this.hover = false;
-    this.suppressClick = false;
-    this.moved = 0;
-    this.width = 1;
-    this.seeded = false;
-    this.samples = [];
-    this.onDown = this.onDown.bind(this);
-    this.onMove = this.onMove.bind(this);
-    this.onUp = this.onUp.bind(this);
-    this.onClick = this.onClick.bind(this);
-    this.bind();
-    this.measure();
-  }
-
-  bind() {
-    this.row.addEventListener("pointerenter", () => {
-      if (canHover) this.hover = true;
-    });
-    this.row.addEventListener("pointerleave", () => {
-      this.hover = false;
-      this.pending = false;
-      this.dragging = false;
-      this.row.classList.remove("is-dragging");
-    });
-    this.row.addEventListener("focusin", (e) => {
-      this.hover = true;
-      const frame = e.target.closest?.(".frame");
-      if (!frame || !e.target.matches(":focus-visible")) return;
-      this.center(frame);
-    });
-    this.row.addEventListener("focusout", (e) => {
-      if (!this.row.contains(e.relatedTarget)) this.hover = false;
-    });
-    this.row.addEventListener("pointerdown", this.onDown);
-    this.row.addEventListener("pointermove", this.onMove, { passive: false });
-    this.row.addEventListener("pointerup", this.onUp);
-    this.row.addEventListener("pointercancel", this.onUp);
-    this.row.addEventListener("click", this.onClick, true);
-    this.row.addEventListener("dragstart", (e) => e.preventDefault());
-  }
-
-  measure() {
-    const w = this.group.getBoundingClientRect().width;
-    if (w > 8) {
-      this.width = w;
-      if (!this.seeded) {
-        this.offset = ((this.index + 1) * w) / 2.7;
-        this.seeded = true;
-        this.render();
-      }
-    }
-  }
-
-  wrap(v) {
-    const w = this.width || 1;
-    v %= w;
-    if (v < 0) v += w;
-    return v;
-  }
-
-  render() {
-    this.offset = this.wrap(this.offset);
-    this.track.style.transform = `translate3d(${-this.offset}px,0,0)`;
-  }
-
-  center(frame) {
-    this.measure();
-    const rowW = this.row.getBoundingClientRect().width;
-    const frameW = frame.getBoundingClientRect().width;
-    this.offset = this.wrap(frame.offsetLeft - (rowW - frameW) / 2);
-    this.gliding = false;
-    this.render();
-  }
-
-  onDown(e) {
-    if (e.button !== undefined && e.button !== 0) return;
-    this.pending = true;
-    this.dragging = false;
-    this.moved = 0;
-    this.startX = e.clientX;
-    this.startY = e.clientY;
-    this.lastX = e.clientX;
-    this.lastT = performance.now();
-    this.samples = [];
-  }
-
-  onMove(e) {
-    if (!this.pending && !this.dragging) return;
-    const dx = e.clientX - this.lastX;
-    if (!this.dragging) {
-      const adx = Math.abs(e.clientX - this.startX);
-      const ady = Math.abs(e.clientY - this.startY);
-      if (adx < 8 && ady < 8) return;
-      if (ady > adx) {
-        this.pending = false;
-        return;
-      }
-      this.dragging = true;
-      this.row.classList.add("is-dragging");
-      this.gliding = false;
-      if (this.row.setPointerCapture) this.row.setPointerCapture(e.pointerId);
-    }
-    e.preventDefault();
-    this.offset -= dx;
-    this.moved += Math.abs(dx);
-    const now = performance.now();
-    const dt = Math.max(8, now - this.lastT);
-    this.samples.push((-dx / dt) * 1000);
-    if (this.samples.length > 5) this.samples.shift();
-    this.lastX = e.clientX;
-    this.lastT = now;
-    this.render();
-  }
-
-  onUp() {
-    if (this.moved > 8) this.suppressClick = true;
-    if (this.dragging && this.samples.length) {
-      const avg = this.samples.reduce((a, b) => a + b, 0) / this.samples.length;
-      const clamped = Math.max(-2200, Math.min(2200, avg));
-      this.vx = Math.abs(clamped) < 80 ? 0 : clamped;
-      this.gliding = this.vx !== 0;
-    }
-    this.dragging = false;
-    this.pending = false;
-    this.row.classList.remove("is-dragging");
-  }
-
-  onClick(e) {
-    if (!this.suppressClick) return;
-    e.preventDefault();
-    e.stopPropagation();
-    this.suppressClick = false;
-  }
-
-  update(dt) {
-    if (reduce || this.dragging) return;
-    const hold = document.body.classList.contains("is-viewer-open") || document.body.classList.contains("is-paused");
-    if (hold) {
-      this.gliding = false;
-      return;
-    }
-    if (this.gliding) {
-      this.offset += this.vx * dt;
-      this.vx *= Math.exp(-2.4 * dt);
-      if (Math.abs(this.vx) < 12) {
-        this.vx = 0;
-        this.gliding = false;
-      }
-      this.render();
-      return;
-    }
-    if (!this.hover) {
-      this.offset += this.direction * this.speed * dt;
-      this.render();
-    }
-  }
+function lockScroll(on) {
+  document.body.classList.toggle("is-locked", on);
+  if (lenis) on ? lenis.stop() : lenis.start();
+  main.inert = on;
+  $(".footer").inert = on;
 }
 
-function fa(n) {
-  return String(n).replace(/\d/g, (d) => "۰۱۲۳۴۵۶۷۸۹"[d]);
-}
-
-function cycle(list, count, shift) {
-  const out = [];
-  for (let i = 0; i < count; i += 1) out.push(list[(i + shift) % list.length]);
-  return out;
-}
-
-function frameButton(project, index, width, eager) {
-  const btn = document.createElement("button");
-  btn.type = "button";
-  btn.className = "frame";
-  btn.dataset.id = project.id;
-  btn.style.setProperty("--w", `${width}px`);
-  btn.style.background = project.tone;
-  btn.setAttribute("aria-label", `${project.title}، ${project.city}، ${project.type}، ${project.year}`);
-  const no = String(index + 1).padStart(2, "0");
-  btn.innerHTML = `
-    <span class="frame-media">
-      <img src="${project.image}" alt="" draggable="false" decoding="async" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'}>
-    </span>
-    <span class="frame-meta">
-      <span class="frame-no">${no}</span>
-      <span class="frame-title">${project.title}</span>
-    </span>`;
-  return btn;
-}
-
-function materialFigure(item, width) {
-  const fig = document.createElement("figure");
-  fig.className = "frame frame-mat";
-  fig.style.setProperty("--w", `${width}px`);
-  fig.style.background = item.tone;
-  fig.innerHTML = `
-    <span class="frame-media"><img src="${item.image}" alt="" draggable="false" decoding="async" loading="lazy"></span>
-    <figcaption><span>${item.name}</span><small>${item.place}</small></figcaption>`;
-  return fig;
-}
-
-function mountStrip(board, { size, speed, direction, index, nodes }) {
-  const row = document.createElement("div");
-  row.className = "row";
-  row.dataset.size = size;
-  const track = document.createElement("div");
-  track.className = "track";
-  const group = document.createElement("div");
-  group.className = "group";
-  nodes.forEach((node) => group.append(node));
-  const clone = group.cloneNode(true);
-  clone.setAttribute("aria-hidden", "true");
-  clone.querySelectorAll("button").forEach((b) => { b.tabIndex = -1; });
-  clone.querySelectorAll("img").forEach((img) => {
-    img.loading = "lazy";
-    img.removeAttribute("fetchpriority");
-  });
-  track.append(group, clone);
-  row.append(track);
-  board.append(row);
-  strips.push(new Filmstrip(row, { speed, direction, index }));
-}
-
-function buildHero() {
-  if (reduce) {
-    heroBoard.classList.add("is-grid");
-    PROJECTS.forEach((project, i) => heroBoard.append(frameButton(project, i, 320, i < 2)));
-    return;
-  }
-  const specs = [
-    { size: "a", speed: 54, direction: 1, shift: 0 },
-    { size: "b", speed: 96, direction: -1, shift: 3 },
-    { size: "c", speed: 42, direction: 1, shift: 5 },
-    { size: "d", speed: 78, direction: -1, shift: 1 }
-  ];
-  specs.forEach((spec, rowIndex) => {
-    const items = cycle(PROJECTS, 12, spec.shift);
-    const nodes = items.map((project, i) => frameButton(
-      project,
-      PROJECTS.indexOf(project),
-      WIDTHS[(i + spec.shift) % WIDTHS.length],
-      rowIndex === 0 && i < 3
-    ));
-    mountStrip(heroBoard, { ...spec, index: rowIndex, nodes });
-  });
-}
-
-function buildMaterials() {
-  if (reduce) {
-    materialBoard.classList.add("is-grid");
-    MATERIALS.forEach((item) => materialBoard.append(materialFigure(item, item.ratioW)));
-    return;
-  }
-  const specs = [
-    { size: "m", speed: 46, direction: -1, shift: 0 },
-    { size: "n", speed: 70, direction: 1, shift: 2 }
-  ];
-  specs.forEach((spec, rowIndex) => {
-    const items = cycle(MATERIALS, 10, spec.shift);
-    const nodes = items.map((item, i) => materialFigure(item, [280, 420, 240, 360, 500, 220][(i + spec.shift) % 6]));
-    mountStrip(materialBoard, { ...spec, index: rowIndex + 3, nodes });
-  });
-}
-
-function visibleProjects() {
-  if (filter === "همه") return PROJECTS;
-  return PROJECTS.filter((p) => p.type === filter);
-}
-
-function setActive(id) {
-  const project = PROJECTS.find((p) => p.id === id);
-  if (!project) return;
-  activeId = id;
-  document.querySelectorAll(".project-row").forEach((el) => {
-    el.classList.toggle("is-active", el.dataset.id === id);
-    if (el.dataset.id === id) el.setAttribute("aria-current", "true");
-    else el.removeAttribute("aria-current");
-  });
-  const index = PROJECTS.indexOf(project);
-  indexKicker.textContent = `${String(index + 1).padStart(2, "0")} — ${project.type}`;
-  indexTitle.textContent = project.title;
-  indexOpen.setAttribute("aria-label", `باز کردن پروندهٔ ${project.title}`);
-  if (indexImg.dataset.id === id) return;
-  indexImg.dataset.id = id;
-  indexImg.style.opacity = "0";
-  let swapped = false;
-  const swap = () => {
-    if (swapped || activeId !== id) return;
-    swapped = true;
-    indexImg.src = project.image;
-    requestAnimationFrame(() => { indexImg.style.opacity = "1"; });
-  };
-  const next = new Image();
-  next.onload = swap;
-  next.onerror = swap;
-  next.src = project.image;
-  if (next.complete) swap();
-}
-
-function renderFilters() {
-  const types = ["همه", ...new Set(PROJECTS.map((p) => p.type))];
-  types.forEach((type) => {
+/* Works */
+function buildWorks() {
+  const track = $("#works-track");
+  PROJECTS.forEach((p, i) => {
     const btn = document.createElement("button");
     btn.type = "button";
-    btn.className = "filter";
-    btn.textContent = type;
-    btn.setAttribute("aria-pressed", String(type === filter));
-    btn.addEventListener("click", () => {
-      filter = type;
-      [...filtersEl.children].forEach((child) => {
-        child.setAttribute("aria-pressed", String(child === btn));
-      });
-      const items = visibleProjects();
-      if (!items.some((p) => p.id === activeId) && items[0]) setActive(items[0].id);
-      renderList();
-    });
-    filtersEl.append(btn);
-  });
-}
-
-function renderList() {
-  list.replaceChildren();
-  const items = visibleProjects();
-  countEl.textContent = `${fa(items.length)} پروژه`;
-  emptyEl.hidden = items.length > 0;
-  items.forEach((project) => {
-    const li = document.createElement("li");
-    const index = PROJECTS.indexOf(project);
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = "project-row";
-    btn.dataset.id = project.id;
-    if (project.id === activeId) {
-      btn.classList.add("is-active");
-      btn.setAttribute("aria-current", "true");
-    }
+    btn.className = "work";
+    btn.dataset.cursor = "view";
+    btn.setAttribute("aria-label", `${p.title}، ${p.city}، ${p.type}، ${p.year}. مشاهدهٔ پروژه`);
     btn.innerHTML = `
-      <span class="row-no">${String(index + 1).padStart(2, "0")}</span>
-      <span>
-        <span class="row-title">${project.title}</span>
-        <span class="row-sub">${project.city} · ${project.type} · ${project.year}</span>
-      </span>
-      ${ARROW}`;
-    btn.addEventListener("pointerenter", () => setActive(project.id));
-    btn.addEventListener("focus", () => setActive(project.id));
-    btn.addEventListener("click", () => applyOpen(project.id, "push"));
-    li.append(btn);
-    list.append(li);
+      <span class="work-media"><img src="${p.image}" alt="" loading="lazy" decoding="async" draggable="false"></span>
+      <span class="work-meta">
+        <span><span class="work-title">${p.title}</span><span class="work-sub">${p.city} · ${p.type} · ${p.year}</span></span>
+        <span class="work-no latin">${pad2(i + 1)}</span>
+      </span>`;
+    btn.addEventListener("click", () => openViewer(p.id, true));
+    track.append(btn);
   });
+  $("#works-total").textContent = pad2(PROJECTS.length);
 }
 
-function fillViewer(project) {
-  const index = PROJECTS.indexOf(project);
-  const fields = {
-    no: `${String(index + 1).padStart(2, "0")} / ${String(PROJECTS.length).padStart(2, "0")}`,
-    title: project.title,
-    text: project.text,
-    city: project.city,
-    year: project.year,
-    area: project.area,
-    status: project.status,
-    type: project.type,
-    client: project.client
-  };
-  Object.entries(fields).forEach(([key, value]) => {
-    const node = viewer.querySelector(`[data-field="${key}"]`);
-    if (node) node.textContent = value;
-  });
-  const img = viewer.querySelector(".viewer-img");
-  img.src = project.image;
-  img.alt = `تصویر پروژهٔ ${project.title} در ${project.city}`;
-  img.style.animation = "none";
-  void img.offsetWidth;
-  img.style.animation = "";
+/* Viewer */
+function fillViewer(p) {
+  const i = PROJECTS.indexOf(p);
+  const fields = { no: `${pad2(i + 1)} / ${pad2(PROJECTS.length)}`, title: p.title, text: p.text, city: p.city, year: p.year, area: p.area, type: p.type };
+  Object.entries(fields).forEach(([k, v]) => { const el = viewer.querySelector(`[data-field="${k}"]`); if (el) el.textContent = v; });
+  const img = $(".viewer-img", viewer);
+  img.src = p.image.replace("w=1200", "w=1800");
+  img.alt = `تصویر پروژهٔ ${p.title} در ${p.city}`;
 }
 
-function syncInert() {
-  const menuOn = menu.classList.contains("is-open");
-  const viewOn = viewer.classList.contains("is-open");
-  const lock = menuOn || viewOn;
-  document.body.classList.toggle("is-locked", lock);
-  main.inert = lock;
-  footer.inert = lock;
-  header.inert = lock;
-  skip.inert = lock;
-  menu.inert = !menuOn;
-  viewer.inert = !viewOn;
-}
-
-function applyOpen(id, mode) {
-  const project = PROJECTS.find((p) => p.id === id);
-  if (!project) return;
-  const wasOpen = viewer.classList.contains("is-open");
-  if (!wasOpen) viewerReturn = document.activeElement;
+function openViewer(id, push) {
+  const p = PROJECTS.find((x) => x.id === id);
+  if (!p) return;
+  if (!openId) viewerReturn = document.activeElement;
   openId = id;
-  fillViewer(project);
-  setActive(id);
+  fillViewer(p);
   viewer.classList.add("is-open");
   viewer.setAttribute("aria-hidden", "false");
-  document.body.classList.add("is-viewer-open");
-  syncInert();
-  if (mode === "push") {
-    history.pushState({ project: id, pushed: true }, "", `#project-${id}`);
-  } else if (mode === "replace") {
-    history.replaceState({ project: id, pushed: Boolean(history.state?.pushed) }, "", `#project-${id}`);
-  }
-  if (!wasOpen) viewer.querySelector(".viewer-close").focus({ preventScroll: true });
+  lockScroll(true);
+  header.inert = true;
+  if (push) history.pushState({ project: id, pushed: true }, "", `#project-${id}`);
+  else history.replaceState({ project: id, pushed: Boolean(history.state?.pushed) }, "", `#project-${id}`);
+  requestAnimationFrame(() => $(".viewer-close", viewer).focus({ preventScroll: true }));
 }
 
-function applyClose() {
-  if (!viewer.classList.contains("is-open")) return;
+function closeViewer() {
+  if (!openId) return;
+  openId = null;
   viewer.classList.remove("is-open");
   viewer.setAttribute("aria-hidden", "true");
-  document.body.classList.remove("is-viewer-open");
-  openId = null;
-  syncInert();
-  if (viewerReturn && typeof viewerReturn.focus === "function") {
-    viewerReturn.focus({ preventScroll: true });
-  }
+  lockScroll(false);
+  header.inert = false;
+  viewerReturn?.focus?.({ preventScroll: true });
 }
 
 function requestClose() {
-  if (history.state?.pushed) {
-    history.back();
-    return;
+  if (history.state?.pushed) history.back();
+  else {
+    history.replaceState(null, "", location.pathname + location.search);
+    closeViewer();
   }
-  if (location.hash.startsWith("#project-")) {
-    history.replaceState(null, "", `${location.pathname}${location.search}`);
-  }
-  applyClose();
 }
 
-function idFromHash() {
-  const match = location.hash.match(/^#project-([a-z0-9-]+)$/);
-  if (!match) return null;
-  return PROJECTS.some((p) => p.id === match[1]) ? match[1] : null;
+function step(dir) {
+  const i = PROJECTS.findIndex((p) => p.id === openId);
+  if (i < 0) return;
+  openViewer(PROJECTS[(i + dir + PROJECTS.length) % PROJECTS.length].id, false);
 }
 
-function neighbor(dir) {
-  const index = PROJECTS.findIndex((p) => p.id === openId);
-  if (index < 0) return;
-  const next = (index + dir + PROJECTS.length) % PROJECTS.length;
-  applyOpen(PROJECTS[next].id, history.state?.pushed ? "replace" : "replace");
-}
-
-function focusable(container) {
-  return [...container.querySelectorAll("a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex='-1'])")]
-    .filter((el) => el.getClientRects().length > 0);
-}
-
-function trapFocus(container, event) {
-  if (event.key !== "Tab") return;
-  const nodes = focusable(container);
+function trap(container, e) {
+  if (e.key !== "Tab") return;
+  const nodes = $$("a[href], button:not([disabled]), input, textarea", container).filter((n) => n.getClientRects().length);
   if (!nodes.length) return;
   const first = nodes[0];
   const last = nodes[nodes.length - 1];
-  if (event.shiftKey && document.activeElement === first) {
-    event.preventDefault();
-    last.focus();
-  } else if (!event.shiftKey && document.activeElement === last) {
-    event.preventDefault();
-    first.focus();
-  }
+  if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+  else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
 }
 
-function openMenu() {
-  menuReturn = document.activeElement;
-  menu.classList.add("is-open");
-  menu.setAttribute("aria-hidden", "false");
-  document.querySelector(".nav-toggle").setAttribute("aria-expanded", "true");
-  syncInert();
-  const first = menu.querySelector("nav a");
-  if (first) first.focus({ preventScroll: true });
-}
-
-function closeMenu() {
-  if (!menu.classList.contains("is-open")) return;
-  menu.classList.remove("is-open");
-  menu.setAttribute("aria-hidden", "true");
-  document.querySelector(".nav-toggle").setAttribute("aria-expanded", "false");
-  syncInert();
-  if (menuReturn && typeof menuReturn.focus === "function") menuReturn.focus({ preventScroll: true });
-}
-
-function setInstrument(id) {
-  if (instTitle.dataset.id === id) return;
-  instTitle.dataset.id = id || "";
-  if (!id) {
-    instNo.textContent = "—";
-    instTitle.textContent = "روی یک قاب بایستید";
-    return;
-  }
-  const project = PROJECTS.find((p) => p.id === id);
-  const index = PROJECTS.indexOf(project);
-  instNo.textContent = String(index + 1).padStart(2, "0");
-  instTitle.textContent = `${project.title} — ${project.city}، ${project.type}، ${project.year}`;
-}
-
-function bindHero() {
-  heroBoard.addEventListener("click", (e) => {
-    const frame = e.target.closest(".frame");
-    if (!frame || !frame.dataset.id) return;
-    applyOpen(frame.dataset.id, "push");
-  });
-  hero.addEventListener("pointerover", (e) => {
-    const frame = e.target.closest?.(".frame");
-    if (frame?.dataset.id) setInstrument(frame.dataset.id);
-  });
-  if (!canHover) return;
-  let hot = null;
-  hero.addEventListener("pointermove", (e) => {
-    const rect = hero.getBoundingClientRect();
-    datum.classList.add("is-on");
-    datum.style.transform = `translate3d(${e.clientX - rect.left}px,0,0)`;
-    notch.style.top = `${e.clientY - rect.top}px`;
-    const frame = e.target.closest?.(".frame");
-    if (hot && hot !== frame) {
-      hot.style.removeProperty("--rx");
-      hot.style.removeProperty("--ry");
-    }
-    hot = frame || null;
-    if (!frame) return;
-    const box = frame.getBoundingClientRect();
-    const x = (e.clientX - box.left) / box.width - 0.5;
-    const y = (e.clientY - box.top) / box.height - 0.5;
-    frame.style.setProperty("--ry", `${(-x * 10).toFixed(2)}deg`);
-    frame.style.setProperty("--rx", `${(y * 8).toFixed(2)}deg`);
-  });
-  hero.addEventListener("pointerleave", () => {
-    datum.classList.remove("is-on");
-    setInstrument(null);
-    if (hot) {
-      hot.style.removeProperty("--rx");
-      hot.style.removeProperty("--ry");
-      hot = null;
-    }
-  });
+/* Menu */
+function setMenu(open) {
+  menu.classList.toggle("is-open", open);
+  menu.setAttribute("aria-hidden", String(!open));
+  menuBtn.setAttribute("aria-expanded", String(open));
+  menuBtn.setAttribute("aria-label", open ? "بستن منو" : "منو");
+  lockScroll(open);
+  if (open) $("a", menu)?.focus({ preventScroll: true });
 }
 
 function bindChrome() {
-  pauseBtn.addEventListener("click", () => {
-    const on = document.body.classList.toggle("is-paused");
-    pauseBtn.setAttribute("aria-pressed", String(on));
-    pauseBtn.textContent = on ? "ادامهٔ حرکت" : "توقف حرکت";
-  });
-  document.querySelector(".nav-toggle").addEventListener("click", openMenu);
-  document.getElementById("nav-close").addEventListener("click", closeMenu);
-  menu.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
-  indexOpen.addEventListener("click", () => applyOpen(activeId, "push"));
-  viewer.querySelector(".viewer-close").addEventListener("click", requestClose);
-  document.getElementById("viewer-prev").addEventListener("click", () => neighbor(-1));
-  document.getElementById("viewer-next").addEventListener("click", () => neighbor(1));
-  list.addEventListener("keydown", (e) => {
-    const buttons = [...list.querySelectorAll(".project-row")];
-    const index = buttons.indexOf(document.activeElement);
-    if (e.key === "ArrowDown" && index >= 0 && index < buttons.length - 1) {
+  menuBtn.addEventListener("click", () => setMenu(!menu.classList.contains("is-open")));
+  $$("a[href^='#']").forEach((a) => {
+    a.addEventListener("click", (e) => {
+      const target = $(a.getAttribute("href"));
+      if (!target) return;
       e.preventDefault();
-      buttons[index + 1].focus();
-    }
-    if (e.key === "ArrowUp" && index > 0) {
-      e.preventDefault();
-      buttons[index - 1].focus();
-    }
+      if (menu.classList.contains("is-open")) setMenu(false);
+      if (lenis) lenis.scrollTo(target, { offset: 0, duration: 1.6 });
+      else target.scrollIntoView({ behavior: reduce ? "auto" : "smooth" });
+    });
   });
+  $(".viewer-close").addEventListener("click", requestClose);
+  $("#viewer-prev").addEventListener("click", () => step(-1));
+  $("#viewer-next").addEventListener("click", () => step(1));
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
-      if (viewer.classList.contains("is-open")) requestClose();
-      else if (menu.classList.contains("is-open")) closeMenu();
+      if (openId) requestClose();
+      else if (menu.classList.contains("is-open")) { setMenu(false); menuBtn.focus(); }
     }
-    if (viewer.classList.contains("is-open")) {
-      trapFocus(viewer, e);
-      if (e.key === "ArrowLeft") { e.preventDefault(); neighbor(1); }
-      if (e.key === "ArrowRight") { e.preventDefault(); neighbor(-1); }
+    if (openId) {
+      trap(viewer, e);
+      if (e.key === "ArrowLeft") step(1);
+      if (e.key === "ArrowRight") step(-1);
     } else if (menu.classList.contains("is-open")) {
-      trapFocus(menu, e);
+      trap(menu, e);
     }
   });
   window.addEventListener("popstate", () => {
-    const id = idFromHash();
-    if (id) applyOpen(id, "none");
-    else applyClose();
+    const m = location.hash.match(/^#project-([a-z]+)$/);
+    if (m) openViewer(m[1], false);
+    else closeViewer();
   });
-  document.addEventListener("error", (e) => {
-    const img = e.target;
-    if (!(img instanceof HTMLImageElement)) return;
-    img.closest(".frame, .index-visual, .viewer-media")?.classList.add("is-fallback");
-  }, true);
 
+  let lastY = 0;
   const onScroll = () => {
-    const max = document.documentElement.scrollHeight - window.innerHeight;
-    const p = max > 0 ? window.scrollY / max : 0;
-    progress.style.transform = `scaleX(${Math.min(1, Math.max(0, p))})`;
+    const y = window.scrollY;
+    header.classList.toggle("is-hidden", y > 200 && y > lastY && !menu.classList.contains("is-open"));
+    header.classList.toggle("is-solid", y > window.innerHeight * 0.9);
+    lastY = y;
   };
   window.addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
-
-  const clock = document.getElementById("clock");
-  const renderClock = () => {
-    const time = new Intl.DateTimeFormat("en-GB", {
-      timeZone: "Asia/Tehran",
-      hour: "2-digit",
-      minute: "2-digit",
-      hourCycle: "h23"
-    }).format(new Date());
-    clock.textContent = time;
-    clock.setAttribute("aria-label", `ساعت تهران ${time}`);
-  };
-  renderClock();
-  setInterval(renderClock, 30000);
-  document.getElementById("year").textContent = new Intl.DateTimeFormat("fa-IR-u-ca-persian", { year: "numeric" }).format(new Date());
-
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add("is-in");
-      io.unobserve(entry.target);
-    });
-  }, { threshold: 0.18 });
-  document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
-  if (reduce) document.querySelectorAll(".reveal").forEach((el) => el.classList.add("is-in"));
-
-  let resizeT = 0;
-  window.addEventListener("resize", () => {
-    clearTimeout(resizeT);
-    resizeT = setTimeout(() => strips.forEach((strip) => strip.measure()), 120);
-  });
 }
 
 function bindForm() {
-  const form = document.getElementById("contact-form");
-  const summary = document.getElementById("form-summary");
-  const success = document.getElementById("form-success");
-  const setError = (id, message) => {
-    const input = document.getElementById(id);
-    const error = document.getElementById(`${id}-error`);
-    error.textContent = message;
-    input.setAttribute("aria-invalid", message ? "true" : "false");
-    if (message) input.setAttribute("aria-describedby", `${id}-error`);
+  const form = $("#contact-form");
+  const summary = $("#form-summary");
+  const success = $("#form-success");
+  const setError = (id, msg) => {
+    const input = $(`#${id}`);
+    $(`#${id}-error`).textContent = msg;
+    input.setAttribute("aria-invalid", msg ? "true" : "false");
+    if (msg) input.setAttribute("aria-describedby", `${id}-error`);
     else input.removeAttribute("aria-describedby");
-    return !message;
+    return !msg;
   };
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    const name = form.name.value.trim();
-    const email = form.email.value.trim();
-    const message = form.message.value.trim();
-    const okName = setError("name", name ? "" : "نام را بنویسید.");
-    const okEmail = setError("email", /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? "" : "ایمیل معتبر بنویسید.");
-    const okMessage = setError("message", message ? "" : "چند خط دربارهٔ پروژه بنویسید.");
-    if (!okName || !okEmail || !okMessage) {
+    const ok = [
+      setError("name", form.name.value.trim() ? "" : "نام را بنویسید."),
+      setError("email", /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.value.trim()) ? "" : "ایمیل معتبر بنویسید."),
+      setError("message", form.message.value.trim() ? "" : "چند خط دربارهٔ پروژه بنویسید.")
+    ].every(Boolean);
+    if (!ok) {
       summary.textContent = "چند مورد را کامل کنید.";
-      form.querySelector("[aria-invalid='true']")?.focus();
+      $("[aria-invalid='true']", form)?.focus();
       return;
     }
     summary.textContent = "";
     form.hidden = true;
     success.hidden = false;
-    document.getElementById("form-reset").focus();
+    $("#form-reset").focus();
   });
-  document.getElementById("form-reset").addEventListener("click", () => {
+  $("#form-reset").addEventListener("click", () => {
     form.reset();
     ["name", "email", "message"].forEach((id) => setError(id, ""));
-    summary.textContent = "";
     success.hidden = true;
     form.hidden = false;
     form.name.focus();
   });
 }
 
-function startWash() {
-  const canvas = document.getElementById("wash");
-  if (!canvas || reduce) return;
-  const ctx = canvas.getContext("2d");
-  const stage = canvas.parentElement;
-  const palette = [
-    [46, 224, 208],
-    [214, 96, 255],
-    [255, 176, 72],
-    [90, 150, 255],
-    [255, 84, 140]
-  ];
-  const orbs = [
-    { x: 0.12, y: 0.22, r: 0.46, c: 0, s: 0.07 },
-    { x: 0.82, y: 0.18, r: 0.4, c: 1, s: 0.05 },
-    { x: 0.58, y: 0.78, r: 0.5, c: 2, s: 0.06 },
-    { x: 0.28, y: 0.62, r: 0.34, c: 3, s: 0.08 }
-  ];
-  const dots = Array.from({ length: 70 }, (_, i) => ({
-    x: Math.random(),
-    y: Math.random(),
-    vx: (Math.random() - 0.5) * 0.00035,
-    vy: (Math.random() - 0.5) * 0.00035,
-    rad: 2.2 + Math.random() * 3.2,
-    c: i % palette.length,
-    a: 0.45 + Math.random() * 0.5,
-    life: 1
-  }));
-  let px = 0.5;
-  let py = 0.4;
-  let tx = 0.5;
-  let ty = 0.4;
-  stage.addEventListener("pointermove", (e) => {
-    const rect = stage.getBoundingClientRect();
-    tx = (e.clientX - rect.left) / rect.width;
-    ty = (e.clientY - rect.top) / rect.height;
-    for (let n = 0; n < 8; n += 1) {
-      const ang = Math.random() * Math.PI * 2;
-      const sp = 0.002 + Math.random() * 0.006;
-      dots.push({
-        x: tx,
-        y: ty,
-        vx: Math.cos(ang) * sp,
-        vy: Math.sin(ang) * sp,
-        rad: 2 + Math.random() * 3.5,
-        c: (n + dots.length) % palette.length,
-        a: 0.95,
-        life: 0.98
-      });
-    }
-    if (dots.length > 240) dots.splice(0, dots.length - 240);
+/* Cursor + magnetic */
+function bindCursor() {
+  if (!finePointer || reduce) return;
+  root.classList.add("has-cursor");
+  const cursor = $(".cursor");
+  const dot = $(".cursor-dot");
+  const ring = $(".cursor-ring");
+  let x = -100, y = -100, rx = -100, ry = -100;
+  window.addEventListener("pointermove", (e) => { x = e.clientX; y = e.clientY; }, { passive: true });
+  document.addEventListener("pointerover", (e) => {
+    const view = e.target.closest?.("[data-cursor='view']");
+    const link = !view && e.target.closest?.("a, button, input, textarea, label");
+    cursor.classList.toggle("is-view", Boolean(view));
+    cursor.classList.toggle("is-link", Boolean(link));
   });
-  const draw = (now) => {
-    const dpr = Math.min(1.5, window.devicePixelRatio || 1);
-    const w = stage.clientWidth;
-    const h = stage.clientHeight;
-    const pw = Math.floor(w * dpr);
-    const ph = Math.floor(h * dpr);
-    if (canvas.width !== pw || canvas.height !== ph) {
-      canvas.width = pw;
-      canvas.height = ph;
+  document.addEventListener("pointerleave", () => { x = y = -100; });
+  const loop = () => {
+    rx += (x - rx) * 0.16;
+    ry += (y - ry) * 0.16;
+    dot.style.transform = `translate3d(${x}px,${y}px,0)`;
+    ring.style.transform = `translate3d(${rx}px,${ry}px,0)`;
+    requestAnimationFrame(loop);
+  };
+  loop();
+
+  $$(".magnetic").forEach((el) => {
+    el.addEventListener("pointermove", (e) => {
+      const r = el.getBoundingClientRect();
+      const mx = (e.clientX - r.left - r.width / 2) * 0.3;
+      const my = (e.clientY - r.top - r.height / 2) * 0.4;
+      el.style.transform = `translate(${mx}px, ${my}px)`;
+    });
+    el.addEventListener("pointerleave", () => {
+      el.style.transition = "transform 0.7s cubic-bezier(0.22,1,0.36,1)";
+      el.style.transform = "";
+      setTimeout(() => { el.style.transition = ""; }, 700);
+    });
+  });
+}
+
+/* Hero video + shader */
+function startHero() {
+  const video = $("#hero-video");
+  const state = { intro: animate ? 0 : 1 };
+  if (reduce) {
+    video.removeAttribute("autoplay");
+    video.pause();
+    return state;
+  }
+  video.play().catch(() => {});
+  try {
+    const gl = window.HeroGL?.start({ video, canvas: $("#hero-gl"), surface: $(".hero-pin") });
+    if (gl) {
+      gl.intro = state.intro;
+      root.classList.add("has-gl");
+      return gl;
     }
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    ctx.clearRect(0, 0, w, h);
-    ctx.globalCompositeOperation = "source-over";
-    px += (tx - px) * 0.08;
-    py += (ty - py) * 0.08;
-    const t = now / 1000;
-    for (const orb of orbs) {
-      const x = (orb.x + Math.sin(t * orb.s + orb.c) * 0.1) * w;
-      const y = (orb.y + Math.cos(t * orb.s * 0.8 + orb.c) * 0.08) * h;
-      const rad = orb.r * Math.max(w, h);
-      const [r, g, b] = palette[orb.c];
-      const grad = ctx.createRadialGradient(x, y, 0, x, y, rad);
-      grad.addColorStop(0, `rgba(${r},${g},${b},0.85)`);
-      grad.addColorStop(1, `rgba(${r},${g},${b},0)`);
-      ctx.fillStyle = grad;
-      ctx.beginPath();
-      ctx.arc(x, y, rad, 0, Math.PI * 2);
-      ctx.fill();
-    }
-    const bloom = Math.max(w, h) * 0.34;
-    const [cr, cg, cb] = palette[0];
-    const [mr, mg, mb] = palette[1];
-    const cursor = ctx.createRadialGradient(px * w, py * h, 0, px * w, py * h, bloom);
-    cursor.addColorStop(0, `rgba(${cr},${cg},${cb},0.42)`);
-    cursor.addColorStop(0.35, `rgba(${mr},${mg},${mb},0.16)`);
-    cursor.addColorStop(1, "rgba(0,0,0,0)");
-    ctx.fillStyle = cursor;
-    ctx.fillRect(0, 0, w, h);
-    for (let i = dots.length - 1; i >= 0; i -= 1) {
-      const d = dots[i];
-      d.x += d.vx;
-      d.y += d.vy;
-      d.vx *= 0.985;
-      d.vy *= 0.985;
-      if (d.life < 1) d.life -= 0.012;
-      if (d.life <= 0) {
-        dots.splice(i, 1);
-        continue;
+  } catch (err) {
+    console.warn("Hero shader unavailable; showing plain video.", err);
+  }
+  return state;
+}
+
+function splitWords(el, cls) {
+  const out = [];
+  [...el.childNodes].forEach((node) => {
+    if (node.nodeType !== Node.TEXT_NODE) return;
+    const frag = document.createDocumentFragment();
+    node.textContent.split(/(\s+)/).forEach((part) => {
+      if (!part) return;
+      if (/^\s+$/.test(part)) { frag.append(part); return; }
+      const outer = document.createElement("span");
+      outer.className = cls;
+      if (cls === "wm") {
+        const inner = document.createElement("span");
+        inner.textContent = part;
+        outer.append(inner);
+        out.push(inner);
+      } else {
+        outer.textContent = part;
+        out.push(outer);
       }
-      if (d.x < -0.04) d.x = 1.04;
-      if (d.x > 1.04) d.x = -0.04;
-      if (d.y < -0.04) d.y = 1.04;
-      if (d.y > 1.04) d.y = -0.04;
-      const [r, g, b] = palette[d.c];
-      ctx.fillStyle = `rgba(${r},${g},${b},${d.a * d.life})`;
-      ctx.beginPath();
-      ctx.arc(d.x * w, d.y * h, d.rad, 0, Math.PI * 2);
-      ctx.fill();
-    }
-    ctx.globalCompositeOperation = "source-over";
-    requestAnimationFrame(draw);
-  };
-  requestAnimationFrame(draw);
-}
-
-function startLoop() {
-  if (reduce) return;
-  let last = performance.now();
-  let raf = 0;
-  const tick = (now) => {
-    const dt = Math.min(0.034, (now - last) / 1000);
-    last = now;
-    strips.forEach((strip) => strip.update(dt));
-    raf = requestAnimationFrame(tick);
-  };
-  const start = () => {
-    last = performance.now();
-    cancelAnimationFrame(raf);
-    raf = requestAnimationFrame(tick);
-  };
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) cancelAnimationFrame(raf);
-    else start();
+      frag.append(outer);
+    });
+    node.replaceWith(frag);
   });
-  start();
+  return out;
 }
 
-function armLoader() {
-  const started = performance.now();
-  let pct = 0;
-  let revealed = false;
-  const timer = reduce ? null : setInterval(() => {
-    pct = Math.min(96, pct + 1 + Math.random() * 5);
-    loadPct.textContent = String(Math.floor(pct)).padStart(2, "0");
-  }, 45);
-  const reveal = () => {
-    if (revealed) return;
-    revealed = true;
-    if (timer) clearInterval(timer);
-    loadPct.textContent = "100";
-    const wait = reduce ? 0 : Math.max(0, 1300 - (performance.now() - started));
-    setTimeout(() => {
-      document.body.classList.add("is-ready");
-      loader.inert = true;
-      loader.setAttribute("aria-hidden", "true");
-      const id = idFromHash();
-      if (id) applyOpen(id, "replace");
-    }, wait);
+/* Motion */
+function startMotion(gl) {
+  const { gsap, ScrollTrigger } = window;
+  gsap.registerPlugin(ScrollTrigger);
+  const mobile = window.matchMedia("(max-width: 900px)").matches;
+
+  if (window.Lenis) {
+    lenis = new window.Lenis({ lerp: 0.085, smoothWheel: true });
+    lenis.on("scroll", ScrollTrigger.update);
+    gsap.ticker.add((t) => lenis.raf(t * 1000));
+    gsap.ticker.lagSmoothing(0);
+    root.classList.add("lenis");
+  }
+
+  const frame = $(".hero-frame");
+  gsap.set(frame, { "--clip-y": "0%", "--clip-x": "0%", "--clip-r": "0px", "--zoom": 1.16 });
+  if (lenis) lenis.stop();
+
+  const intro = gsap.timeline({ delay: 0.2 });
+  intro
+    .to(".curtain-line", { scaleX: 1, duration: 1, ease: "power3.inOut" })
+    .to(".curtain-mark", { opacity: 1, letterSpacing: "0.55em", duration: 0.8, ease: "power2.out" }, "-=0.5")
+    .to([".curtain-mark", ".curtain-line"], { opacity: 0, duration: 0.35 }, "+=0.1")
+    .addLabel("open", "-=0.2")
+    .call(() => lenis?.start(), null, "open+=0.5")
+    .call(() => $(".curtain")?.remove(), null, "open+=1.5")
+    .to(".curtain-top", { yPercent: -100, duration: 1.5, ease: "expo.inOut" }, "open")
+    .to(".curtain-bottom", { yPercent: 100, duration: 1.5, ease: "expo.inOut" }, "<")
+    .to(gl, { intro: 1, duration: 2.4, ease: "power2.out" }, "<0.15")
+    .to(frame, { "--zoom": 1, duration: 3.2, ease: "power3.out" }, "<")
+    .fromTo(".hero-title .line > span", { yPercent: 110, y: 0 }, { yPercent: 0, duration: 1.5, stagger: 0.14, ease: "expo.out" }, "-=2.3")
+    .to([".header", ".hero-eyebrow", ".hero-coord", ".hero-hint", ".hero-scroll"], { opacity: 1, duration: 1.1, stagger: 0.08, ease: "power2.out" }, "-=1.1");
+
+  gsap.timeline({ scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom bottom", scrub: 1 } })
+    .to(frame, { "--clip-y": mobile ? "10%" : "13%", "--clip-x": mobile ? "5%" : "17%", "--clip-r": "26px", ease: "none", duration: 1 }, 0)
+    .to(".hero-copy", { yPercent: -30, autoAlpha: 0, ease: "none", duration: 0.4 }, 0)
+    .to([".hero-hint", ".hero-scroll", ".hero-coord"], { autoAlpha: 0, duration: 0.15 }, 0)
+    .fromTo(".hero-after", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.3 }, 0.42)
+    .to(".hero-after", { autoAlpha: 0, y: -30, duration: 0.2 }, 0.85);
+
+  const words = splitWords($("#manifesto-text"), "w");
+  gsap.to(words, {
+    opacity: 1,
+    stagger: 0.06,
+    ease: "none",
+    scrollTrigger: { trigger: "#manifesto-text", start: "top 82%", end: "bottom 50%", scrub: true }
+  });
+
+  const track = $("#works-track");
+  const cards = $$(".work", track);
+  const pin = $(".works-pin");
+  const distance = () => {
+    const cs = getComputedStyle(pin);
+    const column = cs.flexDirection.startsWith("column");
+    const before = parseFloat(cs.paddingInlineStart) + (column ? 0 : $(".works-head").offsetWidth + parseFloat(cs.columnGap || 0));
+    return Math.max(0, track.offsetWidth + before - pin.clientWidth);
   };
-  if (document.readyState === "complete") reveal();
-  else window.addEventListener("load", reveal);
-  setTimeout(reveal, 2800);
+  const nowEl = $("#works-now");
+  gsap.to(mobile ? track : [$(".works-head"), track], {
+    x: () => distance(),
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".works",
+      start: "top top",
+      end: () => `+=${distance() + window.innerHeight * 0.4}`,
+      pin: ".works-pin",
+      scrub: 1,
+      invalidateOnRefresh: true,
+      onUpdate: (self) => {
+        nowEl.textContent = pad2(Math.min(PROJECTS.length, Math.round(self.progress * (PROJECTS.length - 1)) + 1));
+        const vw = window.innerWidth;
+        cards.forEach((card) => {
+          const r = card.getBoundingClientRect();
+          const off = ((r.left + r.width / 2 - vw / 2) / vw) * -10;
+          card.style.setProperty("--px", `${off.toFixed(2)}%`);
+        });
+      }
+    }
+  });
+  gsap.from(cards, { yPercent: 18, autoAlpha: 0, duration: 1.4, stagger: 0.08, ease: "expo.out", scrollTrigger: { trigger: ".works", start: "top 70%" } });
+
+  $$(".split").forEach((el) => {
+    const parts = splitWords(el, "wm");
+    gsap.from(parts, { yPercent: 105, duration: 1.3, stagger: 0.05, ease: "expo.out", scrollTrigger: { trigger: el, start: "top 82%" } });
+  });
+  $$(".fade-up").forEach((el) => {
+    gsap.to(el, { autoAlpha: 1, y: 0, duration: 1.2, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 85%" } });
+  });
+  $$(".reveal-window").forEach((el) => {
+    gsap.to(el, { clipPath: "inset(0% 0% 0% 0%)", ease: "none", scrollTrigger: { trigger: el, start: "top 90%", end: "center 50%", scrub: 1 } });
+    const img = $("img", el);
+    gsap.fromTo(img, { "--py": "-12%" }, { "--py": "0%", ease: "none", scrollTrigger: { trigger: el, start: "top bottom", end: "bottom top", scrub: true } });
+  });
+  $$("[data-count]").forEach((el) => {
+    const counter = { v: 0 };
+    gsap.to(counter, {
+      v: Number(el.dataset.count),
+      duration: 2.2,
+      ease: "power3.out",
+      scrollTrigger: { trigger: el, start: "top 88%" },
+      onUpdate: () => { el.textContent = pad2(Math.round(counter.v)); }
+    });
+  });
+
+  const paths = $$(".b-ink path");
+  const wall = $(".b-wall");
+  const roof = $(".b-roof");
+  const lamps = $$(".b-lamp");
+  const halo = $(".b-halo");
+  const stepsEl = $$("#steps li");
+  const meterBar = $("#meter-bar");
+  const meterNo = $("#meter-no");
+  const clamp = (v) => Math.min(1, Math.max(0, v));
+  const groups = [0, 1, 2, 3].map((s) => paths.filter((p) => Number(p.dataset.step) === s));
+  const drawBuild = (p) => {
+    const f = p * 4;
+    groups.forEach((group, s) => {
+      group.forEach((path, i) => {
+        const local = clamp((f - s - (i / group.length) * 0.5) / 0.6);
+        path.style.setProperty("--d", (1 - local).toFixed(4));
+      });
+    });
+    wall.style.setProperty("--s", clamp((f - 1.3) / 0.7).toFixed(4));
+    roof.style.setProperty("--s", clamp((f - 2.3) / 0.6).toFixed(4));
+    lamps.forEach((lamp, i) => lamp.style.setProperty("--o", clamp((f - 3.2 - i * 0.12) / 0.4).toFixed(4)));
+    halo.style.setProperty("--o", clamp((f - 3.4) / 0.5).toFixed(4));
+    const active = Math.min(3, Math.floor(f));
+    stepsEl.forEach((li, i) => li.classList.toggle("is-on", i === active));
+    meterBar.style.transform = `scaleX(${p.toFixed(4)})`;
+    meterNo.textContent = pad2(active + 1);
+  };
+  drawBuild(0);
+  ScrollTrigger.create({
+    trigger: mobile ? ".process-stage" : ".process",
+    start: mobile ? "top 85%" : "top top",
+    end: mobile ? "bottom 25%" : "bottom bottom",
+    scrub: true,
+    onUpdate: (self) => drawBuild(self.progress)
+  });
+
+  [$(".hero"), ...$$("main [data-theme]")].forEach((sec) => {
+    ScrollTrigger.create({
+      trigger: sec,
+      start: "top 55%",
+      end: "bottom 55%",
+      onToggle: (self) => { if (self.isActive) root.dataset.theme = sec.dataset.theme || "dark"; }
+    });
+  });
+
+  window.addEventListener("load", () => ScrollTrigger.refresh());
 }
 
-buildHero();
-buildMaterials();
-renderFilters();
-renderList();
-setActive(PROJECTS[0].id);
-bindHero();
-bindChrome();
-bindForm();
-syncInert();
-startWash();
-startLoop();
-armLoader();
+function init() {
+  buildWorks();
+  bindChrome();
+  bindForm();
+  bindCursor();
+  const gl = startHero();
+  if (animate) startMotion(gl);
+  else root.classList.remove("js-anim");
+  const m = location.hash.match(/^#project-([a-z]+)$/);
+  if (m) openViewer(m[1], false);
+}
+
+init();

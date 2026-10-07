@@ -195,10 +195,13 @@ function bindChrome() {
   });
 
   let lastY = 0;
+  const showcase = $(".showcase");
   const onScroll = () => {
     const y = window.scrollY;
     header.classList.toggle("is-hidden", y > 200 && y > lastY && !menu.classList.contains("is-open"));
-    header.classList.toggle("is-solid", y > window.innerHeight * 0.9);
+    const sc = showcase?.getBoundingClientRect();
+    const overShowcase = sc && sc.top <= 1 && sc.bottom > 80;
+    header.classList.toggle("is-solid", y > window.innerHeight * 0.9 && !overShowcase);
     lastY = y;
   };
   window.addEventListener("scroll", onScroll, { passive: true });
@@ -585,6 +588,141 @@ function startMotion(gl) {
   window.addEventListener("load", () => ScrollTrigger.refresh());
 }
 
+/* Showcase */
+function startShowcase() {
+  const sec = $(".showcase");
+  if (!sec) return;
+  const slides = $$(".sc-slide", sec);
+  const dots = $$(".sc-dots button", sec);
+  const nowEl = $("#sc-now");
+  const n = slides.length;
+  const HOLD = 6.5;
+  const g = animate ? window.gsap : null;
+  let idx = 0;
+  let busy = false;
+  let started = false;
+  let inView = false;
+  let timer = null;
+  let drift = null;
+
+  const parts = (s) => ({
+    img: $(".sc-media img", s),
+    lines: $$(".sc-title .line > span", s),
+    rest: $$(".sc-kicker, .sc-text, .sc-btn", s)
+  });
+  const mark = (i) => {
+    nowEl.textContent = pad2(i + 1);
+    dots.forEach((d, j) => {
+      if (j === i) d.setAttribute("aria-current", "true");
+      else d.removeAttribute("aria-current");
+      d.style.setProperty("--f", 0);
+    });
+  };
+  const startTimer = () => {
+    if (!g) return;
+    timer?.kill();
+    timer = g.fromTo(dots[idx], { "--f": 0 }, { "--f": 1, duration: HOLD, ease: "none", paused: !inView, onComplete: () => go(idx + 1, 1) });
+  };
+  const kenBurns = (img, dir) => {
+    drift?.kill();
+    drift = g.to(img, { scale: 1, xPercent: dir * -1.5, duration: HOLD + 2.5, ease: "sine.inOut" });
+  };
+
+  function go(next, dir) {
+    next = (next + n) % n;
+    if (busy || next === idx) return;
+    const from = slides[idx];
+    const to = slides[next];
+    if (!g) {
+      from.classList.remove("is-active");
+      to.classList.add("is-active");
+      idx = next;
+      mark(idx);
+      return;
+    }
+    busy = true;
+    timer?.kill();
+    drift?.kill();
+    const a = parts(from);
+    const b = parts(to);
+    idx = next;
+    mark(idx);
+    to.classList.add("is-active");
+    g.set(from, { zIndex: 1 });
+    g.set(to, { zIndex: 2, clipPath: dir > 0 ? "inset(0% 100% 0% 0%)" : "inset(0% 0% 0% 100%)" });
+    g.timeline({
+      onComplete: () => {
+        from.classList.remove("is-active");
+        g.set(from, { clearProps: "zIndex" });
+        g.set(a.img, { clearProps: "transform" });
+        g.set(to, { clearProps: "zIndex,clipPath" });
+        busy = false;
+      }
+    })
+      .to(a.lines, { yPercent: -110, duration: 0.6, stagger: 0.06, ease: "power3.in" }, 0)
+      .to(a.rest, { autoAlpha: 0, y: -16, duration: 0.45, stagger: 0.04, ease: "power2.in" }, 0)
+      .to(a.img, { xPercent: dir * 7, scale: 1.08, duration: 1.6, ease: "expo.inOut" }, 0.15)
+      .to(to, { clipPath: "inset(0% 0% 0% 0%)", duration: 1.5, ease: "expo.inOut" }, 0.15)
+      .fromTo(b.img, { scale: 1.32, xPercent: dir * -6 }, { scale: 1.1, xPercent: 0, duration: 1.7, ease: "expo.out" }, 0.15)
+      .fromTo(b.lines, { yPercent: 110 }, { yPercent: 0, duration: 1.2, stagger: 0.1, ease: "expo.out" }, 0.85)
+      .fromTo(b.rest, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 0.9, stagger: 0.08, ease: "power3.out" }, 1)
+      .call(() => kenBurns(b.img, dir), null, 1.85)
+      .call(startTimer, null, 1.2);
+  }
+
+  $(".sc-next", sec).addEventListener("click", () => go(idx + 1, 1));
+  $(".sc-prev", sec).addEventListener("click", () => go(idx - 1, -1));
+  dots.forEach((d, j) => d.addEventListener("click", () => go(j, j > idx ? 1 : -1)));
+  sec.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") go(idx + 1, 1);
+    if (e.key === "ArrowRight") go(idx - 1, -1);
+  });
+  let x0 = null;
+  sec.addEventListener("pointerdown", (e) => { if (e.pointerType !== "mouse") x0 = e.clientX; });
+  sec.addEventListener("pointerup", (e) => {
+    if (x0 === null) return;
+    const dx = e.clientX - x0;
+    x0 = null;
+    if (Math.abs(dx) > 50) dx > 0 ? go(idx + 1, 1) : go(idx - 1, -1);
+  });
+  mark(0);
+  if (!g) return;
+
+  const first = parts(slides[0]);
+  g.set(first.img, { scale: 1.18 });
+  g.set(first.lines, { yPercent: 110 });
+  g.set(first.rest, { autoAlpha: 0, y: 24 });
+  const intro = () => {
+    started = true;
+    g.timeline()
+      .to(first.img, { scale: 1.1, duration: 1.8, ease: "expo.out" }, 0)
+      .to(first.lines, { yPercent: 0, duration: 1.3, stagger: 0.12, ease: "expo.out" }, 0.2)
+      .to(first.rest, { autoAlpha: 1, y: 0, duration: 1, stagger: 0.1, ease: "power3.out" }, 0.45)
+      .call(() => kenBurns(first.img, 1), null, 1.8)
+      .call(startTimer, null, 0.6);
+  };
+  window.ScrollTrigger.create({
+    trigger: sec,
+    start: "top 65%",
+    end: "bottom 35%",
+    onToggle: (self) => {
+      inView = self.isActive;
+      if (inView && !started) intro();
+      else if (inView) timer?.resume();
+      else timer?.pause();
+    }
+  });
+
+  if (finePointer) {
+    const medias = $$(".sc-media", sec);
+    sec.addEventListener("pointermove", (e) => {
+      const mx = (e.clientX / window.innerWidth) * 2 - 1;
+      const my = (e.clientY / window.innerHeight) * 2 - 1;
+      g.to(medias, { x: mx * -16, y: my * -10, duration: 1.4, ease: "power3.out", overwrite: "auto" });
+    });
+  }
+}
+
 function init() {
   buildWorks();
   bindChrome();
@@ -593,6 +731,7 @@ function init() {
   const gl = startHero();
   if (animate) startMotion(gl);
   else root.classList.remove("js-anim");
+  startShowcase();
   const m = location.hash.match(/^#project-([a-z]+)$/);
   if (m) openViewer(m[1], false);
 }
